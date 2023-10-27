@@ -26,6 +26,8 @@ public class ListFoundationModels implements RequestHandler<APIGatewayProxyReque
             for (FoundationModelSummary model : models) {
                 array.put(new JSONObject()
                         .put("modelId", model.modelId())
+                        .put("provider", model.providerName())
+                        .put("modelName", model.modelName())
                 );
             }
             JSONObject body = new JSONObject().put("foundationModels", array);

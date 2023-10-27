@@ -27,7 +27,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>aws.community.examples.bedrock.InfrastructureApp</mainClass>
+                    <mainClass>constructs.community.examples.bedrock.InfrastructureApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -38,6 +38,11 @@
             <groupId>software.amazon.awscdk</groupId>
             <artifactId>aws-cdk-lib</artifactId>
             <version>${cdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>apigatewayv2-integrations-alpha</artifactId>
+            <version>2.102.0-alpha.0</version>
         </dependency>
         <dependency>
             <groupId>software.constructs</groupId>

@@ -7,15 +7,16 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import org.json.JSONArray;
 import org.json.JSONObject;
 import software.amazon.awssdk.services.bedrock.BedrockClient;
-import software.amazon.awssdk.services.bedrock.model.FoundationModelSummary;
-import software.amazon.awssdk.services.bedrock.model.ListFoundationModelsRequest;
-import software.amazon.awssdk.services.bedrock.model.ListFoundationModelsResponse;
+import software.amazon.awssdk.services.bedrock.model.*;
 
 import java.util.List;
 
 public class BedrockHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
+    public APIGatewayProxyResponseEvent handleRequest(
+            final APIGatewayProxyRequestEvent input,
+            final Context context
+    ) {
 
         try (BedrockClient bedrockClient = BedrockClient.builder().build()) {
             ListFoundationModelsRequest request = ListFoundationModelsRequest.builder().build();

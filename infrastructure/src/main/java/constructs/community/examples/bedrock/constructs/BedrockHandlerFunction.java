@@ -1,4 +1,4 @@
-package aws.community.examples.bedrock;
+package constructs.community.examples.bedrock.constructs;
 
 import software.amazon.awscdk.BundlingOptions;
 import software.amazon.awscdk.DockerVolume;

@@ -1,17 +1,17 @@
 package aws.community.examples.bedrock.resources;
 
-import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.services.apigatewayv2.alpha.AddRoutesOptions;
 import software.amazon.awscdk.services.apigatewayv2.alpha.HttpMethod;
 import software.amazon.awscdk.services.apigatewayv2.alpha.PayloadFormatVersion;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegration;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegrationProps;
 import software.amazon.awscdk.services.lambda.Function;
+import software.constructs.Construct;
 
 import java.util.List;
 
 public class Routes {
-    public static AddRoutesOptions listFoundationModels(Stack scope) {
+    public static AddRoutesOptions listFoundationModels(Construct scope) {
         String path = "/foundation-models";
         HttpMethod httpMethod = HttpMethod.GET;
 
@@ -31,7 +31,7 @@ public class Routes {
                 .build();
     }
 
-    public static AddRoutesOptions getFoundationModel(Stack scope) {
+    public static AddRoutesOptions getFoundationModel(Construct scope) {
         String path = "/foundation-models/{model}";
         HttpMethod httpMethod = HttpMethod.GET;
 

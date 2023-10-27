@@ -4,6 +4,10 @@ import software.amazon.awscdk.BundlingOptions;
 import software.amazon.awscdk.DockerVolume;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.Stack;
+
+import java.util.Arrays;
+import java.util.List;
+
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
@@ -12,14 +16,11 @@ import software.amazon.awscdk.services.lambda.FunctionProps;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.s3.assets.AssetOptions;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static java.util.Collections.singletonList;
 import static software.amazon.awscdk.BundlingOutput.ARCHIVED;
 
-public class BedrockHandlerFunction {
-    public static Function create(Stack stack) {
+public class GetFoundationModel {
+    public static Function create(Stack scope) {
         // Mount local .m2 inside the container to avoid repeat downloads
         List<DockerVolume> volume = singletonList(
                 DockerVolume.builder()
@@ -28,42 +29,41 @@ public class BedrockHandlerFunction {
                         .build()
         );
 
-        List<String> functionOnePackagingInstructions = Arrays.asList(
+        List<String> packagingInstructions = Arrays.asList(
                 "/bin/sh",
                 "-c",
                 "cd Bedrock && mvn clean install " +
-                        "&& cp /asset-input/Bedrock/target/bedrock.jar /asset-output/"
+                "&& cp /asset-input/Bedrock/target/bedrock.jar /asset-output/"
         );
 
         BundlingOptions bundlingOptions = BundlingOptions.builder()
-                .command(functionOnePackagingInstructions)
+                .command(packagingInstructions)
                 .image(Runtime.JAVA_11.getBundlingImage())
                 .user("root")
                 .outputType(ARCHIVED)
                 .volumes(volume)
                 .build();
 
-        AssetOptions functionOneBuilderOptions = AssetOptions.builder()
+        AssetOptions assetOptions = AssetOptions.builder()
                 .bundling(bundlingOptions)
                 .build();
 
-
-        Function bedrockHandler = new Function(stack, "BedrockHandler", FunctionProps.builder()
+        Function getFoundationModel = new Function(scope, "GetFoundationModel", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)
-                .code(Code.fromAsset("../application/", functionOneBuilderOptions))
-                .handler("aws.community.examples.bedrock.BedrockHandler")
+                .code(Code.fromAsset("../application/", assetOptions))
+                .handler("aws.community.examples.bedrock.GetFoundationModel")
                 .memorySize(512)
                 .timeout(Duration.minutes(1))
                 .build());
 
         PolicyStatement bedrockPermissions = PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
-                .actions(List.of("bedrock:ListFoundationModels"))
+                .actions(List.of("bedrock:GetFoundationModel"))
                 .resources(List.of("*"))
                 .build();
 
-        bedrockHandler.addToRolePolicy(bedrockPermissions);
+        getFoundationModel.addToRolePolicy(bedrockPermissions);
 
-        return bedrockHandler;
+        return getFoundationModel;
     }
 }

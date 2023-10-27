@@ -1,6 +1,7 @@
 package constructs.community.examples.bedrock;
 
-import constructs.community.examples.bedrock.constructs.BedrockHandlerFunction;
+import constructs.community.examples.bedrock.constructs.GetFoundationModel;
+import constructs.community.examples.bedrock.constructs.ListFoundationModels;
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
@@ -20,24 +21,41 @@ public class InfrastructureStack extends Stack {
     public InfrastructureStack(final Construct parent, final String id, final StackProps props) {
         super(parent, id, props);
 
-        Function bedrockHandler = BedrockHandlerFunction.create(this);
-
         HttpApi api = new HttpApi(this, "api", HttpApiProps.builder()
                 .apiName("java-fm-playground-api")
                 .build()
         );
 
-        api.addRoutes(
-                AddRoutesOptions.builder()
-                        .path("/foundation-models")
-                        .methods(List.of(HttpMethod.GET))
-                        .integration(new HttpLambdaIntegration(
-                                "bedrockHandler", bedrockHandler,
-                                HttpLambdaIntegrationProps.builder()
-                                        .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
-                                        .build()
-                        ))
+        Function listFoundationModels = ListFoundationModels.create(this);
+
+        HttpLambdaIntegration listFoundationModelsIntegration = new HttpLambdaIntegration(
+                "listFoundationModels", listFoundationModels,
+                HttpLambdaIntegrationProps.builder()
+                        .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
                         .build()
+        );
+
+        api.addRoutes(AddRoutesOptions.builder()
+                .path("/foundation-models")
+                .methods(List.of(HttpMethod.GET))
+                .integration(listFoundationModelsIntegration)
+                .build()
+        );
+
+        Function getFoundationModels = GetFoundationModel.create(this);
+
+        HttpLambdaIntegration getFoundationModelIntegration = new HttpLambdaIntegration(
+                "getFoundationModels", getFoundationModels,
+                HttpLambdaIntegrationProps.builder()
+                        .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
+                        .build()
+        );
+
+        api.addRoutes(AddRoutesOptions.builder()
+                .path("/foundation-models/{model}")
+                .methods(List.of(HttpMethod.GET))
+                .integration(getFoundationModelIntegration)
+                .build()
         );
     }
 }

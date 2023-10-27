@@ -11,12 +11,10 @@ import software.amazon.awssdk.services.bedrock.model.*;
 
 import java.util.List;
 
-public class BedrockHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+public class ListFoundationModels implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    public APIGatewayProxyResponseEvent handleRequest(
-            final APIGatewayProxyRequestEvent input,
-            final Context context
-    ) {
+    @Override
+    public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent event, final Context context) {
 
         try (BedrockClient bedrockClient = BedrockClient.builder().build()) {
             ListFoundationModelsRequest request = ListFoundationModelsRequest.builder().build();
@@ -35,6 +33,11 @@ public class BedrockHandler implements RequestHandler<APIGatewayProxyRequestEven
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
                     .withBody(body.toString());
+
+        } catch (Exception e) {
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(500)
+                    .withBody("Internal Server Error");
         }
     }
 }

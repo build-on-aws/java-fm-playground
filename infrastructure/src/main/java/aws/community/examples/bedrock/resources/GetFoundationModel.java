@@ -13,9 +13,7 @@ import software.constructs.Construct;
 import java.util.List;
 
 public class GetFoundationModel {
-    public static Function create(Construct scope) {
-
-        AssetOptions assetOptions = BedrockFunction.prepare();
+    public static Function create(Construct scope, AssetOptions assetOptions) {
 
         Function getFoundationModel = new Function(scope, "GetFoundationModel", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)

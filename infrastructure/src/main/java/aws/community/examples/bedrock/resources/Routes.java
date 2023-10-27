@@ -6,16 +6,17 @@ import software.amazon.awscdk.services.apigatewayv2.alpha.PayloadFormatVersion;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegration;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegrationProps;
 import software.amazon.awscdk.services.lambda.Function;
+import software.amazon.awscdk.services.s3.assets.AssetOptions;
 import software.constructs.Construct;
 
 import java.util.List;
 
 public class Routes {
-    public static AddRoutesOptions listFoundationModels(Construct scope) {
+    public static AddRoutesOptions listFoundationModels(Construct scope, AssetOptions assetOptions) {
         String path = "/foundation-models";
         HttpMethod httpMethod = HttpMethod.GET;
 
-        Function listFoundationModels = ListFoundationModels.create(scope);
+        Function listFoundationModels = ListFoundationModels.create(scope, assetOptions);
 
         HttpLambdaIntegration listFoundationModelsIntegration = new HttpLambdaIntegration(
                 "listFoundationModels", listFoundationModels,
@@ -31,11 +32,11 @@ public class Routes {
                 .build();
     }
 
-    public static AddRoutesOptions getFoundationModel(Construct scope) {
+    public static AddRoutesOptions getFoundationModel(Construct scope, AssetOptions assetOptions) {
         String path = "/foundation-models/{model}";
         HttpMethod httpMethod = HttpMethod.GET;
 
-        Function getFoundationModels = GetFoundationModel.create(scope);
+        Function getFoundationModels = GetFoundationModel.create(scope, assetOptions);
 
         HttpLambdaIntegration getFoundationModelIntegration = new HttpLambdaIntegration(
                 "getFoundationModels", getFoundationModels,

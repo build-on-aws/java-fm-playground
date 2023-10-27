@@ -13,7 +13,7 @@ import static software.amazon.awscdk.BundlingOutput.ARCHIVED;
 
 public abstract class BedrockFunction {
 
-    public static AssetOptions prepare() {
+    public static AssetOptions prepareAssetOptions() {
 
         // Mount local .m2 inside the container to avoid repeat downloads
         List<DockerVolume> volume = singletonList(

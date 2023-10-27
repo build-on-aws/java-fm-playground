@@ -1,6 +1,10 @@
 package aws.community.examples.bedrock;
 
 import software.amazon.awscdk.*;
+import software.amazon.awscdk.services.iam.Effect;
+import software.amazon.awscdk.services.iam.Policy;
+import software.amazon.awscdk.services.iam.PolicyProps;
+import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.FunctionProps;
@@ -49,6 +53,7 @@ public class InfrastructureStack extends Stack {
                 .bundling(bundlingOptions)
                 .build();
 
+
         Function bedrockHandler = new Function(this, "BedrockHandler", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)
                 .code(Code.fromAsset("../application/", functionOneBuilderOptions))
@@ -56,5 +61,13 @@ public class InfrastructureStack extends Stack {
                 .memorySize(512)
                 .timeout(Duration.minutes(1))
                 .build());
+
+        PolicyStatement bedrockPermissions = PolicyStatement.Builder.create()
+                .effect(Effect.ALLOW)
+                .actions(List.of("bedrock:ListFoundationModels"))
+                .resources(List.of("*"))
+                .build();
+
+        bedrockHandler.addToRolePolicy(bedrockPermissions);
     }
 }

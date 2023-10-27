@@ -35,7 +35,5 @@ public class BedrockHandler implements RequestHandler<APIGatewayProxyRequestEven
                     .withStatusCode(200)
                     .withBody(body.toString());
         }
-
-
     }
 }

@@ -27,7 +27,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>aws.community.examples.InfrastructureApp</mainClass>
+                    <mainClass>aws.community.examples.bedrock.InfrastructureApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,4 +1,4 @@
-package constructs.community.examples.bedrock;
+package aws.community.examples.bedrock;
 
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Environment;

@@ -37,7 +37,7 @@ public class ListFoundationModels implements RequestHandler<APIGatewayProxyReque
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(500)
-                    .withBody("Internal Server Error");
+                    .withBody(e.getMessage());
         }
     }
 }

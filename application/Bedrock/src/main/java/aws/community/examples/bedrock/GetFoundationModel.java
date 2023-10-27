@@ -25,13 +25,7 @@ public class GetFoundationModel implements RequestHandler<APIGatewayProxyRequest
 
             GetFoundationModelResponse response;
 
-            try {
-                response = bedrockClient.getFoundationModel(request);
-            } catch (ResourceNotFoundException e) {
-                return new APIGatewayProxyResponseEvent()
-                        .withStatusCode(404)
-                        .withBody(String.format("Model %s not found.", modelId));
-            }
+            response = bedrockClient.getFoundationModel(request);
 
             FoundationModelDetails model = response.modelDetails();
 
@@ -47,7 +41,7 @@ public class GetFoundationModel implements RequestHandler<APIGatewayProxyRequest
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(500)
-                    .withBody("Internal Server Error");
+                    .withBody(e.getMessage());
         }
     }
 }

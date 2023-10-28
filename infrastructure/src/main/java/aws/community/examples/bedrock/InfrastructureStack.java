@@ -25,6 +25,7 @@ import software.amazon.awscdk.triggers.TriggerFunction;
 import software.amazon.awscdk.triggers.TriggerFunctionProps;
 import software.constructs.Construct;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -77,6 +78,10 @@ public class InfrastructureStack extends Stack {
                         "FRONTEND_BUCKET", frontendBucket.getBucketName()
                 ))
                 .executeAfter(List.of(frontendBucket))
+<<<<<<< HEAD
+=======
+                .description(new Date().toString())
+>>>>>>> 162ce296192f75fa2867436aea5441585efc0a8f
                 .build()
         );
 
@@ -96,7 +101,11 @@ public class InfrastructureStack extends Stack {
         Bucket bucket = new Bucket(this, "FrontendBucket", BucketProps.builder()
                 .encryption(BucketEncryption.S3_MANAGED)
                 .blockPublicAccess(BlockPublicAccess.BLOCK_ALL)
+<<<<<<< HEAD
                 .removalPolicy(RemovalPolicy.DESTROY)
+=======
+                .removalPolicy(RemovalPolicy.RETAIN)
+>>>>>>> 162ce296192f75fa2867436aea5441585efc0a8f
                 .build()
         );
 

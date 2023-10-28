@@ -7,3 +7,9 @@
 ```bash
 ./install.sh
 ```
+
+### Powershell
+
+```powershell
+.\Install.ps1
+```

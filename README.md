@@ -19,13 +19,13 @@ This guide will walk you through the steps to deploy the application on differen
 Follow the instructions for your specific OS.
 
 ### Prerequisites
-- Make sure you have the necessary permissions to execute scripts.
-- Ensure that all environment variables and dependencies are properly set up.
-- JDK installed (at least Java 11)
-- Maven installed. 
-- AWS CDK installed. 
-- Docker installed and running.
-- An active AWS account with configured credentials.
+- Make sure you have the necessary permissions to execute scripts
+- Ensure that all environment variables and dependencies are properly set up
+- JDK 11 (or higher) installed
+- Maven installed
+- AWS CDK installed
+- Docker installed and running
+- An active AWS account with configured credentials
 
 ### Linux / MacOS
 To deploy on Linux or MacOS, open your terminal and run the following command:

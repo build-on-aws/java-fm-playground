@@ -1,62 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Java FM Playground</title>
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8">
+    <title>Java MF Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">Java FM Playground</a>
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body class="flex h-screen bg-gray-100">
+
+<!-- Fixed Titlebar -->
+<div class="w-full h-12 bg-black text-white fixed z-10">
+    <div class="flex items-center h-full px-6">
+        <a href="index.html" class="text-lg no-underline text-white hover:text-gray-200">Java FM Playground</a>
     </div>
-</nav>
-<div class="container my-5">
-    <div
-            class="btn-group-vertical"
-            role="group"
-            aria-label="Vertical button group"
-    >
-        <button
-                type="button"
-                class="btn btn-primary"
-                onclick="listFoundationModels()"
-        >
+</div>
+
+<!-- Fixed Sidebar -->
+<div class="w-64 h-full bg-indigo-800 fixed pt-12">
+    <nav class="text-white text-base font-semibold pt-3">
+        <a href="list-foundation-models.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <i class="fas fa-tachometer-alt mr-3"></i>
             List Foundation Models
-        </button>
+        </a>
+    </nav>
+</div>
+
+<!-- Content Area -->
+<div class="ml-64 bg-gray-100 h-full pt-12">
+    <div class="p-4">
+        <h1 class="text-3xl">Welcome to the Java FM Playground!</h1>
+        <div>
+            The Java Foundation Model Playground is a sample application showcasing how to leverage Amazon Bedrock from Java code.
+            As any sample application, it is not production-ready. It is provided for the sole purpose of illustrating
+            how Java developers can leverage Amazon Bedrock to build generative AI-enabled applications.
+        </div>
+        <div>
+            Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from
+            leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Stability AI, and Amazon via a single API.</div>
+        </div>
     </div>
 </div>
 
-<div class="container my-5">
-    <div class="col-lg-8 px-0">
-        <table class="table" id="foundationModels"></table>
-    </div>
-</div>
-
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"
-></script>
-<script src="/main.js"></script>
-<script src="/config.js"></script>
 </body>
 </html>

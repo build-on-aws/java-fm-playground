@@ -69,6 +69,15 @@ Deployment succeeded. Navigate to https://PREFIX.cloudfront.net
 
 Open your web browser and navigate to the displayed URL to start using the application.
 
+## Delete the application
+
+To delete the application, execute the following commands:
+
+```     
+cd ./cdk
+cdk destroy --all
+```
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.

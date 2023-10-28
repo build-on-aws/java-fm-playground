@@ -3,9 +3,7 @@ package aws.community.examples.bedrock.resources;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
-import software.amazon.awscdk.services.lambda.Code;
-import software.amazon.awscdk.services.lambda.Function;
-import software.amazon.awscdk.services.lambda.FunctionProps;
+import software.amazon.awscdk.services.lambda.*;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.s3.assets.AssetOptions;
 import software.constructs.Construct;
@@ -21,6 +19,7 @@ public class GetFoundationModel {
                 .handler("aws.community.examples.bedrock.GetFoundationModel")
                 .memorySize(512)
                 .timeout(Duration.minutes(1))
+                .snapStart(SnapStartConf.ON_PUBLISHED_VERSIONS)
                 .build());
 
         PolicyStatement bedrockPermissions = PolicyStatement.Builder.create()

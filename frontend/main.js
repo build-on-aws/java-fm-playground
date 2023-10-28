@@ -1,5 +1,5 @@
 function fetchFoundationModel(modelId) {
-    const apiEndpoint = frontendConfig.apiDomain + 'foundation-models/' + modelId;
+    const apiEndpoint = frontendConfig.apiBaseUrl + 'foundation-models/' + modelId;
     fetch(apiEndpoint)
         .then((response) => response.json())
         .then((data) => {
@@ -38,7 +38,7 @@ function fetchFoundationModel(modelId) {
 function listFoundationModels() {
     console.log('listFoundationModels()');
 
-    const apiEndpoint = frontendConfig.apiDomain + 'foundation-models';
+    const apiEndpoint = frontendConfig.apiBaseUrl + 'foundation-models';
 
     fetch(apiEndpoint)
         .then((response) => response.json())

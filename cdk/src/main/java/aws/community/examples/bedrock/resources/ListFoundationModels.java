@@ -11,16 +11,17 @@ import software.constructs.Construct;
 import java.util.List;
 
 public class ListFoundationModels  {
-    public static Function create(Construct scope, AssetOptions assetOptions) {
+    public static Alias create(Construct scope, AssetOptions assetOptions) {
 
-        Function listFoundationModels = new Function(scope, "ListFoundationModels", FunctionProps.builder()
+        Function function = new Function(scope, "ListFoundationModels", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)
-                .code(Code.fromAsset("../application/", assetOptions))
+                .code(Code.fromAsset("../backend/", assetOptions))
                 .handler("aws.community.examples.bedrock.ListFoundationModels")
                 .memorySize(512)
                 .timeout(Duration.minutes(1))
                 .snapStart(SnapStartConf.ON_PUBLISHED_VERSIONS)
-                .build());
+                .build()
+        );
 
         PolicyStatement bedrockPermissions = PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
@@ -28,8 +29,17 @@ public class ListFoundationModels  {
                 .resources(List.of("*"))
                 .build();
 
-        listFoundationModels.addToRolePolicy(bedrockPermissions);
+        function.addToRolePolicy(bedrockPermissions);
 
-        return listFoundationModels;
+        Version version = new Version(scope, "ListFoundationModelsVersion", VersionProps.builder()
+                .lambda(function)
+                .build()
+        );
+
+        return new Alias(scope, "ListFoundationModelsAlias", AliasProps.builder()
+                .aliasName("ListFoundationModels")
+                .version(version)
+                .build()
+        );
     }
 }

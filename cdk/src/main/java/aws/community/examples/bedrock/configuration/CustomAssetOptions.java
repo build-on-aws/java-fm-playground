@@ -1,4 +1,4 @@
-package aws.community.examples.bedrock.resources;
+package aws.community.examples.bedrock.configuration;
 
 import software.amazon.awscdk.BundlingOptions;
 import software.amazon.awscdk.DockerVolume;
@@ -11,9 +11,9 @@ import java.util.List;
 import static java.util.Collections.singletonList;
 import static software.amazon.awscdk.BundlingOutput.ARCHIVED;
 
-public abstract class BedrockFunction {
+public abstract class CustomAssetOptions {
 
-    public static AssetOptions prepareAssetOptions() {
+    public static AssetOptions prepare() {
 
         // Mount local .m2 inside the container to avoid repeat downloads
         List<DockerVolume> volume = singletonList(

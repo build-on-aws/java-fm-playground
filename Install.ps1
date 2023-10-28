@@ -1,4 +1,4 @@
-Set-Location .\infrastructure
+Set-Location .\cdk
 
 Write-Host "Deploying Backend..."
 cdk deploy Backend

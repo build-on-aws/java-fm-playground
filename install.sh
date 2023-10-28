@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd infrastructure
+cd cdk
 
 echo "Deploying Backend..."
 cdk deploy Backend

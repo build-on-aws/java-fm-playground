@@ -1,7 +1,7 @@
-package aws.community.examples.bedrock;
+package aws.community.examples.bedrock.stacks;
 
-import aws.community.examples.bedrock.resources.BedrockFunction;
-import aws.community.examples.bedrock.resources.Routes;
+import aws.community.examples.bedrock.configuration.CustomAssetOptions;
+import aws.community.examples.bedrock.configuration.Routes;
 import software.amazon.awscdk.*;
 import software.amazon.awscdk.services.apigatewayv2.alpha.CorsPreflightOptions;
 import software.amazon.awscdk.services.apigatewayv2.alpha.HttpApi;
@@ -29,7 +29,7 @@ public class BackendStack extends Stack {
 
         HttpApi api = createApi();
 
-        AssetOptions assetOptions = BedrockFunction.prepareAssetOptions();
+        AssetOptions assetOptions = CustomAssetOptions.prepare();
         api.addRoutes(Routes.listFoundationModels(this, assetOptions));
         api.addRoutes(Routes.getFoundationModel(this, assetOptions));
 

@@ -1,10 +1,12 @@
 package aws.community.examples.bedrock;
 
+import aws.community.examples.bedrock.stacks.BackendStack;
+import aws.community.examples.bedrock.stacks.FrontendStack;
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Environment;
 import software.amazon.awscdk.StackProps;
 
-public final class JavFmPlaygroundApp {
+public final class JavaFmPlaygroundApp {
     public static void main(final String[] args) {
         App app = new App();
 

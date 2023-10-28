@@ -1,5 +1,5 @@
 @echo off
-cd infrastructure
+cd cdk
 
 echo Deploying Backend...
 call cdk deploy Backend

@@ -11,11 +11,11 @@ import software.constructs.Construct;
 import java.util.List;
 
 public class GetFoundationModel {
-    public static Function create(Construct scope, AssetOptions assetOptions) {
+    public static Alias create(Construct scope, AssetOptions assetOptions) {
 
-        Function getFoundationModel = new Function(scope, "GetFoundationModel", FunctionProps.builder()
+        Function function = new Function(scope, "GetFoundationModel", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)
-                .code(Code.fromAsset("../application/", assetOptions))
+                .code(Code.fromAsset("../backend/", assetOptions))
                 .handler("aws.community.examples.bedrock.GetFoundationModel")
                 .memorySize(512)
                 .timeout(Duration.minutes(1))
@@ -28,8 +28,17 @@ public class GetFoundationModel {
                 .resources(List.of("*"))
                 .build();
 
-        getFoundationModel.addToRolePolicy(bedrockPermissions);
+        function.addToRolePolicy(bedrockPermissions);
 
-        return getFoundationModel;
+        Version version = new Version(scope, "GetFoundationModelVersion", VersionProps.builder()
+                .lambda(function)
+                .build()
+        );
+
+        return new Alias(scope, "GetFoundationModelAlias", AliasProps.builder()
+                .aliasName("GetFoundationModel")
+                .version(version)
+                .build()
+        );
     }
 }

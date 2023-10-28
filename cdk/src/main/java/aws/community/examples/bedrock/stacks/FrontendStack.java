@@ -1,4 +1,4 @@
-package aws.community.examples.bedrock;
+package aws.community.examples.bedrock.stacks;
 
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Fn;

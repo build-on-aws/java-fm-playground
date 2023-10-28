@@ -1,10 +1,13 @@
-package aws.community.examples.bedrock.resources;
+package aws.community.examples.bedrock.configuration;
 
+import aws.community.examples.bedrock.resources.GetFoundationModel;
+import aws.community.examples.bedrock.resources.ListFoundationModels;
 import software.amazon.awscdk.services.apigatewayv2.alpha.AddRoutesOptions;
 import software.amazon.awscdk.services.apigatewayv2.alpha.HttpMethod;
 import software.amazon.awscdk.services.apigatewayv2.alpha.PayloadFormatVersion;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegration;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegrationProps;
+import software.amazon.awscdk.services.lambda.Alias;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.s3.assets.AssetOptions;
 import software.constructs.Construct;
@@ -16,10 +19,10 @@ public class Routes {
         String path = "/foundation-models";
         HttpMethod httpMethod = HttpMethod.GET;
 
-        Function listFoundationModels = ListFoundationModels.create(scope, assetOptions);
+        Alias function = ListFoundationModels.create(scope, assetOptions);
 
         HttpLambdaIntegration listFoundationModelsIntegration = new HttpLambdaIntegration(
-                "listFoundationModels", listFoundationModels,
+                "listFoundationModels", function,
                 HttpLambdaIntegrationProps.builder()
                         .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
                         .build()
@@ -36,10 +39,10 @@ public class Routes {
         String path = "/foundation-models/{model}";
         HttpMethod httpMethod = HttpMethod.GET;
 
-        Function getFoundationModels = GetFoundationModel.create(scope, assetOptions);
+        Alias function = GetFoundationModel.create(scope, assetOptions);
 
         HttpLambdaIntegration getFoundationModelIntegration = new HttpLambdaIntegration(
-                "getFoundationModels", getFoundationModels,
+                "getFoundationModels", function,
                 HttpLambdaIntegrationProps.builder()
                         .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
                         .build()

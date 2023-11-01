@@ -1,82 +1,61 @@
-# Java FM Playground
+# 🎮 Java FM Playground
 
-Java FM Playground is a sample application showcasing how to leverage Amazon Bedrock from Java code. 
-As any sample application, it is not production-ready. It is provided for the sole purpose of illustrating 
-how Java developers can leverage Amazon Bedrock to build generative AI-enabled applications.
+Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java.
 
-Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from 
-leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Stability AI, and Amazon via a single API.
+> 🚨 **Note:** This is a sample application and not intended for production use. It's all about learning and experimenting!
 
-In order to let you test and interact with the different foundation models, the Java FM Playground offers you
-the following functionality:
+## 📦 What's Inside?
 
-- List all available Foundation Models
-- Display details of individual Foundation Models
+This repository offers a 🌱 **Spring Boot** application with a Next.js frontend that can be executed locally.
 
-## Deploy the application
+## 🛠 Prerequisites
 
-This guide will walk you through the steps to deploy the application on different operating systems.
-Follow the instructions for your specific OS.
+Before diving in, make sure you have the following installed:
 
-### Prerequisites
-- Make sure you have the necessary permissions to execute scripts
-- Ensure that all environment variables and dependencies are properly set up
-- JDK 11 (or higher) installed
-- Maven installed
-- AWS CDK installed
-- Docker installed and running
+- Java JDK 17 or higher
+- Maven
+- Node.js and npm (for the Next.js frontend)
 - An active AWS account with configured credentials
 
-### Linux / MacOS
-To deploy on Linux or MacOS, open your terminal and run the following command:
+> 🚨 **Note:** AWS accounts don't have access to models by default. You can [add access to specific models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) using the model access page.
 
-```
-./install.sh
-```
+## 🚀 How to Deploy
 
-**Note:** You may be prompted to confirm to set IAM permissions for the application by typing 'Y'.
+Before proceeding, ensure you've met all the prerequisites above.
 
-### Windows
+### 🐧 Linux
 
-Windows users have the option to use either PowerShell or the Command Prompt.
+```bash
+# Clone the repository
+git clone https://github.com/build-on-aws/java-fm-playground.git
 
-#### PowerShell
+# Navigate into the directory
+cd java-fm-playground
 
-Open PowerShell and run:
-
-```
-.\Install.ps1
+# Deploy the application
+./deploy.sh
 ```
 
-**Note:** You may be prompted to confirm to set IAM permissions for the application by typing 'Y'.
+### 🪟 Windows
 
-#### Command Prompt
+```bash
+# Clone the repository
+git clone https://github.com/build-on-aws/java-fm-playground.git
 
-Alternatively, you can use the Command Prompt. Open it and execute:
+# Navigate into the directory
+cd java-fm-playground
 
-```
-install.bat
-```
-
-**Note:** You may be prompted to confirm to set IAM permissions for the application by typing 'Y'.
-
-## Start the Application
-After running the appropriate script, you will see an output like:
-
-```
-Deployment succeeded. Navigate to https://PREFIX.cloudfront.net
+# Deploy the application
+deploy.cmd
 ```
 
-Open your web browser and navigate to the displayed URL to start using the application.
+## 👨‍💻 Access the Application
 
-## Delete the application
+After successful deployment of the application, open your web browser and navigate to: http://localhost:3000
 
-To delete the application, execute the following commands:
+You should now see the Spring Boot FM Playground up and running!
 
-```     
-cd ./cdk
-cdk destroy --all
-```
+Happy Coding! 👩‍💻👨‍💻
 
 ## Security
 

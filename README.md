@@ -1,6 +1,6 @@
 # 🎮 Java FM Playground
 
-Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java environment.
+Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java.
 
 > 🚨 **Note:** This is a sample application and not intended for production use. It's all about learning and experimenting!
 

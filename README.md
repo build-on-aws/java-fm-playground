@@ -36,7 +36,7 @@ cd java-fm-playground
 ./deploy.sh
 ```
 
-### 🪟 Windows
+### 🖥️ Windows
 
 ```bash
 # Clone the repository

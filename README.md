@@ -1,17 +1,29 @@
-# Java FM Playground
+# 🎮 Java FM Playground
 
-The Java Foundation Model (FM) Playground is a sample application showcasing how to leverage Amazon Bedrock from Java code.
-As any sample application, it is not production-ready. It is provided for the sole purpose of illustrating
-how Java developers can leverage Amazon Bedrock to build generative AI-enabled applications.
+Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java environment.
 
-This repository contains two flavors of the Java FM Playground:
+> 🚨 **Note:** This is a sample application and not intended for production use. It's all about learning and experimenting!
 
-- [Serverless CDK](./serverless-cdk-demo): An AWS Cloud Development Kit (AWS CDK) project, that deploys the playground as a serverless web application in your AWS account using AWS Lambda and Amazon S3 static website hosting.
-- [Spring Boot](./spring-boot-demo): A Spring Boot application with Next.js-based frontend
+## 📦 What's Inside?
 
-## Deploy the demo
+This repository offers two flavors of the Java FM Playground:
 
-Please refer to the [Serverless CDK demo README](./serverless-cdk-demo/README.md) and the [Spring Boot demo README](./spring-boot-demo/README.md) for their respective deployment instructions.
+- 🚀 [**Serverless CDK**](./serverless-cdk-demo)
+    - Uses AWS Lambda and Amazon API Gateway for the backend.
+    - Frontend hosted on Amazon S3 using Amazon CloudFront.
+    - Easily deployable using the AWS Cloud Development Kit (CDK).
+
+- 🌱 [**Spring Boot**](./spring-boot-demo)
+    - A Spring Boot application that can be executed locally.
+    - The frontend powered by Next.js.
+
+## 🚀 How to Deploy
+
+For step-by-step deployment instructions:
+- Check out the [**Serverless CDK demo README**](./serverless-cdk-demo/README.md) for deploying the Serverless CDK version.
+- Head over to the [**Spring Boot demo README**](./spring-boot-demo/README.md) for deploying the Spring Boot version.
+
+Happy Coding! 👩‍💻👨‍💻
 
 ## Security
 

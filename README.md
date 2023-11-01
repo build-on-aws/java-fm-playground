@@ -6,22 +6,54 @@ Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample 
 
 ## 📦 What's Inside?
 
-This repository offers two flavors of the Java FM Playground:
+This repository offers a 🌱 **Spring Boot** application with a Next.js frontend that can be executed locally.
 
-- 🚀 [**Serverless CDK**](./serverless-cdk-demo)
-    - Uses AWS Lambda and Amazon API Gateway for the backend.
-    - Frontend hosted on Amazon S3 using Amazon CloudFront.
-    - Easily deployable using the AWS Cloud Development Kit (CDK).
+## 🛠 Prerequisites
 
-- 🌱 [**Spring Boot**](./spring-boot-demo)
-    - A Spring Boot application that can be executed locally.
-    - The frontend powered by Next.js.
+Before diving in, make sure you have the following installed:
+
+- Java JDK 17 or higher
+- Maven
+- Node.js and npm (for the Next.js frontend)
+- An active AWS account with configured credentials
+
+> 🚨 **Note:** AWS accounts don't have access to models by default. You can [add access to specific models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) using the model access page.
 
 ## 🚀 How to Deploy
 
-For step-by-step deployment instructions:
-- Check out the [**Serverless CDK demo README**](./serverless-cdk-demo/README.md) for deploying the Serverless CDK version.
-- Head over to the [**Spring Boot demo README**](./spring-boot-demo/README.md) for deploying the Spring Boot version.
+Before proceeding, ensure you've met all the prerequisites above.
+
+### 🐧 Linux
+
+```bash
+# Clone the repository
+git clone https://github.com/build-on-aws/java-fm-playground.git
+
+# Navigate into the directory
+cd java-fm-playground
+
+# Deploy the application
+./deploy.sh
+```
+
+### 🪟 Windows
+
+```bash
+# Clone the repository
+git clone https://github.com/build-on-aws/java-fm-playground.git
+
+# Navigate into the directory
+cd java-fm-playground
+
+# Deploy the application
+deploy.cmd
+```
+
+## 👨‍💻 Access the Application
+
+After successful deployment of the application, open your web browser and navigate to: http://localhost:3000
+
+You should now see the Spring Boot FM Playground up and running!
 
 Happy Coding! 👩‍💻👨‍💻
 

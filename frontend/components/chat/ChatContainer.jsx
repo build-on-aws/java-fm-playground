@@ -1,8 +1,8 @@
 "use client";
 
-import Assistant from "@/components/chat/Assistant";
 import Human from "@/components/chat/Human";
 import React, { useState } from "react";
+import Assistant from "@/components/chat/Assistant";
 
 export default function ChatContainer() {
     const [conversation, setConversation] = useState([]);

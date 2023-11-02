@@ -1,9 +1,9 @@
 "use client";
 
-import ChatComponent from "@/components/Chat/ChatComponent";
+import ChatContainer from "@/components/chat/ChatContainer";
 
 export default async function Chat() {
     return (
-        <ChatComponent />
+        <ChatContainer />
     )
 }

@@ -17,8 +17,8 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class InvokeClaudeV2 extends BedrockRuntimeController {
 
-    @PostMapping("/foundation-models/model/claudev2/invoke")
-    public ClaudeV2InvocationResponse invoke(@RequestBody ClaudeV2ChatRequest body) {
+    @PostMapping("/foundation-models/model/anthropic.claude-v2/invoke")
+    public InvokeClaudeV2ChatResponse invoke(@RequestBody InvokeClaudeV2ChatRequest body) {
 
         try (BedrockRuntimeClient client = BedrockRuntimeController.client()) {
             String prompt = extractPrompt(body);
@@ -45,13 +45,13 @@ public class InvokeClaudeV2 extends BedrockRuntimeController {
 
             String completion = jsonObject.getString("completion");
 
-            return new ClaudeV2InvocationResponse(completion);
+            return new InvokeClaudeV2ChatResponse(completion);
         }
     }
 
-    private static String extractPrompt(ClaudeV2ChatRequest body) {
+    private static String extractPrompt(InvokeClaudeV2ChatRequest body) {
         StringBuilder conversationBuilder = new StringBuilder();
-        for (ChatMessage message : body.conversation) {
+        for (ClaudeV2ChatMessage message : body.conversation) {
             conversationBuilder
                     .append(message.sender)
                     .append(": ")
@@ -62,9 +62,9 @@ public class InvokeClaudeV2 extends BedrockRuntimeController {
         return conversationBuilder.toString().trim();
     }
 
-    public record ClaudeV2InvocationResponse(String text) { }
+    public record InvokeClaudeV2ChatRequest(List<ClaudeV2ChatMessage> conversation) { }
 
-    public record ChatMessage(String sender, String message) { }
+    public record InvokeClaudeV2ChatResponse(String text) { }
 
-    public record ClaudeV2ChatRequest(List<ChatMessage> conversation) { }
+    public record ClaudeV2ChatMessage(String sender, String message) { }
 }

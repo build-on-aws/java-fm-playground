@@ -7,7 +7,7 @@ export default async function Models() {
     const data = await res.json();
 
     return (
-        <div className="container px-6 py-8 mx-auto">
+        <div className="flex flex-col flex-auto h-full p-6">
             <h3 className="text-3xl font-medium text-gray-700">Foundation Models</h3>
             <div className="flex flex-col mt-8">
                 <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">

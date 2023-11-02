@@ -21,6 +21,10 @@ export default function Navigation() {
                       className="flex items-center px-6 py-2 mt-4 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
                     <span className="mx-3">Chat Playground</span>
                 </Link>
+                <Link href="/image"
+                      className="flex items-center px-6 py-2 mt-4 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
+                    <span className="mx-3">Image Playground</span>
+                </Link>
             </nav>
         </div>
     )

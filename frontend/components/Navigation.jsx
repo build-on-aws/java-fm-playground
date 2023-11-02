@@ -1,9 +1,7 @@
 import Link from "next/link";
 export default function Navigation() {
-    // const activeClasses = "text-gray-100 bg-gray-700 bg-opacity-25"
 
     return (
-
         <div className="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <div className="flex items-center justify-center mt-9">
                 <div className="flex items-center">
@@ -21,7 +19,11 @@ export default function Navigation() {
                       className="flex items-center px-6 py-2 mt-4 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
                     <span className="mx-3">Chat Playground</span>
                 </Link>
+                <Link href="/image"
+                      className="flex items-center px-6 py-2 mt-4 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
+                    <span className="mx-3">Image Playground</span>
+                </Link>
             </nav>
         </div>
-    )
+    );
 }

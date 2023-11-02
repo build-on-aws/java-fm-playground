@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Spinner from "@/components/Spinner";
 
 export default function ImageContainer() {
     const [imgSrc, setImgSrc] = useState('/placeholder.png');
     const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
 
     const sendMessage = async () => {
-        if (inputValue.trim() === '') {
-            return;
-        }
+        if (inputValue.trim() === '') { return; }
+
+        setIsLoading(true);
 
         const prompt = {prompt: inputValue.trim()}
 
@@ -32,6 +34,8 @@ export default function ImageContainer() {
             setImgSrc(`data:image/png;base64,${atob(body.imageByteArray)}`);
         } catch (error) {
             console.error('Error fetching image:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -86,8 +90,12 @@ export default function ImageContainer() {
                     <div className="flex flex-col h-full">
                         <div className="grid grid-cols-12 gap-y-2">
                             <div className="col-start-1 col-end-11 p-3 rounded-lg">
-                                <div className="flex flex-row items-center">
-                                    <Image src={imgSrc} alt="AI generated image" width="512" height="512" />
+                                <div className="flex flex-row items-center w-[512px] h-[512px]">
+                                    {isLoading ? (
+                                        <Spinner />
+                                    ) : (
+                                        <Image src={imgSrc} alt="AI generated image" width="512" height="512" />
+                                    )}
                                 </div>
                             </div>
                         </div>

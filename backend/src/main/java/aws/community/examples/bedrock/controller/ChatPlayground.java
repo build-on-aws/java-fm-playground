@@ -21,19 +21,18 @@ public class ChatPlayground {
     }
 
     @PostMapping("/foundation-models/model/{modelId}/invoke")
-    public InvokeLlmChatResponse invokeLlm(@PathVariable String modelId, @RequestBody InvokeLlmChatRequest requestBody) {
+    public String invokeLlm(@PathVariable String modelId, @RequestBody LlmChatRequest body) {
 
-        switch (modelId) {
-            case "anthropic.claude-v2":
-                return claudeV2(requestBody);
-            default:
-                return null;
-        }
+        return switch (modelId) {
+            case "anthropic.claude-v2" -> invokeClaudeV2(body.prompt);
+            default -> null;
+        };
+
     }
 
-    private InvokeLlmChatResponse claudeV2(InvokeLlmChatRequest requestBody) {
+    private String invokeClaudeV2(String prompt) {
         JSONObject jsonBody = new JSONObject()
-                .put("prompt", "Human: " + requestBody.prompt + " Assistant:")
+                .put("prompt", "Human: " + prompt + " Assistant:")
                 .put("temperature", 0.8)
                 .put("max_tokens_to_sample", 1024);
 
@@ -52,13 +51,9 @@ public class ChatPlayground {
                 response.body().asString(StandardCharsets.UTF_8)
         );
 
-        String completion = jsonObject.getString("completion");
-
-        return new InvokeLlmChatResponse(completion);
+        return jsonObject.getString("completion");
     }
 
-    public record InvokeLlmChatRequest(String prompt) { }
-
-    public record InvokeLlmChatResponse(String text) { }
+    public record LlmChatRequest(String prompt) { }
 
 }

@@ -1,6 +1,7 @@
 package aws.community.examples.bedrock.controller;
 
 import aws.community.examples.bedrock.models.Claude;
+import aws.community.examples.bedrock.models.Llm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +19,11 @@ public class ChatPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-models/model/{modelId}/invoke")
-    public String invokeLlm(@PathVariable String modelId, @RequestBody LlmChatRequest body) {
-
+    @PostMapping("/foundation-models/model/text/{modelId}/invoke")
+    public String invokeLlm(@PathVariable String modelId, @RequestBody Llm.ChatRequest body) {
         return switch (modelId) {
-            case "anthropic.claude-v2" -> Claude.invoke(body.prompt, client);
+            case "anthropic.claude-v2" -> Claude.invoke(body, client);
             default -> null;
         };
-
     }
-
-    public record LlmChatRequest(String prompt) { }
 }

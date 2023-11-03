@@ -28,7 +28,7 @@ export default function ChatContainer() {
 
         try {
             const prompt = extractPrompt([...conversation, newMessage]);
-            const response = await fetch("http://localhost:8080/foundation-models/model/anthropic.claude-v2/invoke", {
+            const response = await fetch("http://localhost:8080/foundation-models/model/text/anthropic.claude-v2/invoke", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({prompt: prompt})

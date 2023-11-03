@@ -9,9 +9,10 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import java.nio.charset.StandardCharsets;
 
 public class Claude {
-    public static String invoke(String prompt, BedrockRuntimeClient client) {
+    public static String invoke(Llm.ChatRequest body, BedrockRuntimeClient client) {
+
         JSONObject jsonBody = new JSONObject()
-                .put("prompt", "Human: " + prompt + " Assistant:")
+                .put("prompt", "Human: " + body.prompt() + " Assistant:")
                 .put("temperature", 0.8)
                 .put("max_tokens_to_sample", 1024);
 

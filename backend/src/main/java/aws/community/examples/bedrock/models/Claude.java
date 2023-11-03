@@ -9,8 +9,15 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 public class Claude {
     public static Response invoke(Request body, String modelId, BedrockRuntimeClient client) {
 
+        String systemPrompt =
+            """
+            Take the role of a friendly chat bot. Your responses are brief.
+            You sometimes use emojis where appropriate, but you don't overdo it.
+            Engage in a dialog by asking questions, except when Human indicates that the conversation is over.
+            """;
+
         JSONObject jsonBody = new JSONObject()
-                .put("prompt", "Human: " + body.prompt() + " Assistant:")
+                .put("prompt", "Human: " + systemPrompt + " " + body.prompt() + " Assistant:")
                 .put("temperature", 0.8)
                 .put("max_tokens_to_sample", 1024);
 

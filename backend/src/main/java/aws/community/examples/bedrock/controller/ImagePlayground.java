@@ -15,6 +15,13 @@ import java.util.List;
 @RestController
 public class ImagePlayground {
 
+    private final BedrockRuntimeClient client;
+
+    @Autowired
+    public ImagePlayground(final BedrockRuntimeClient client) {
+        this.client = client;
+    }
+
     @PostMapping ("/foundation-models/model/image/{modelId}/invoke")
     public StableDiffusion.Response invoke(@PathVariable String modelId, @RequestBody StableDiffusion.Request body) {
 
@@ -23,12 +30,4 @@ public class ImagePlayground {
             default -> null;
         };
     }
-
-    private final BedrockRuntimeClient client;
-
-    @Autowired
-    public ImagePlayground(final BedrockRuntimeClient client) {
-        this.client = client;
-    }
-
 }

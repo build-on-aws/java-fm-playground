@@ -38,12 +38,12 @@ export default function ChatContainer() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const completion = await response.text();
-
-            setConversation(prevConversation => [...prevConversation, {
-                sender: "Assistant",
-                message: completion
-            }]);
+            await response.json().then(data => {
+                setConversation(prevConversation => [...prevConversation, {
+                    sender: "Assistant",
+                    message: data.completion
+                }]);
+            });
 
         } catch (error) {
             console.error("Error sending message:", error);

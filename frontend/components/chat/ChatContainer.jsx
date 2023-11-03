@@ -12,16 +12,26 @@ export default function ChatContainer() {
         setInputValue(e.target.value);
     };
 
+    const extractPrompt = (body) => {
+        let conversationBuilder = '';
+        for (const message of body) {
+            conversationBuilder += `${message.sender}: ${message.message}\n\n`;
+        }
+
+        return conversationBuilder.trim();
+    }
+
     const sendMessage = async () => {
         const newMessage = { sender: "Human", message: inputValue };
         setConversation(prevConversation => [...prevConversation, newMessage]);
         setInputValue('');
 
         try {
+            const prompt = extractPrompt([...conversation, newMessage]);
             const response = await fetch("http://localhost:8080/foundation-models/model/anthropic.claude-v2/invoke", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ conversation: [...conversation, newMessage] })
+                body: JSON.stringify({prompt: prompt})
             });
 
             if (!response.ok) {

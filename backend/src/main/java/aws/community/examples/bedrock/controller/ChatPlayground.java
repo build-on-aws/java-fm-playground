@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 @RestController
 public class ChatPlayground {
@@ -24,12 +23,10 @@ public class ChatPlayground {
     }
 
     @PostMapping("/foundation-models/model/anthropic.claude-v2/invoke")
-    public InvokeClaudeV2ChatResponse invokeClaudeV2(@RequestBody InvokeClaudeV2ChatRequest body) {
-
-        String prompt = extractPrompt(body);
+    public InvokeLlmChatResponse invokeClaudeV2(@RequestBody InvokeLlmChatRequest requestBody) {
 
         JSONObject jsonBody = new JSONObject()
-                .put("prompt", "Human: " + prompt + " Assistant:")
+                .put("prompt", "Human: " + requestBody.prompt + " Assistant:")
                 .put("temperature", 0.8)
                 .put("max_tokens_to_sample", 1024);
 
@@ -50,25 +47,11 @@ public class ChatPlayground {
 
         String completion = jsonObject.getString("completion");
 
-        return new InvokeClaudeV2ChatResponse(completion);
+        return new InvokeLlmChatResponse(completion);
     }
 
-    private static String extractPrompt(InvokeClaudeV2ChatRequest body) {
-        StringBuilder conversationBuilder = new StringBuilder();
-        for (ClaudeV2ChatMessage message : body.conversation) {
-            conversationBuilder
-                    .append(message.sender)
-                    .append(": ")
-                    .append(message.message)
-                    .append("\n\n");
-        }
+    public record InvokeLlmChatRequest(String prompt) { }
 
-        return conversationBuilder.toString().trim();
-    }
+    public record InvokeLlmChatResponse(String text) { }
 
-    public record InvokeClaudeV2ChatRequest(List<ClaudeV2ChatMessage> conversation) { }
-
-    public record InvokeClaudeV2ChatResponse(String text) { }
-
-    public record ClaudeV2ChatMessage(String sender, String message) { }
 }

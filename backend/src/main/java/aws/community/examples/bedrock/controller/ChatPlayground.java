@@ -2,9 +2,7 @@ package aws.community.examples.bedrock.controller;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
@@ -22,9 +20,18 @@ public class ChatPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-models/model/anthropic.claude-v2/invoke")
-    public InvokeLlmChatResponse invokeClaudeV2(@RequestBody InvokeLlmChatRequest requestBody) {
+    @PostMapping("/foundation-models/model/{modelId}/invoke")
+    public InvokeLlmChatResponse invokeLlm(@PathVariable String modelId, @RequestBody InvokeLlmChatRequest requestBody) {
 
+        switch (modelId) {
+            case "anthropic.claude-v2":
+                return claudeV2(requestBody);
+            default:
+                return null;
+        }
+    }
+
+    private InvokeLlmChatResponse claudeV2(InvokeLlmChatRequest requestBody) {
         JSONObject jsonBody = new JSONObject()
                 .put("prompt", "Human: " + requestBody.prompt + " Assistant:")
                 .put("temperature", 0.8)

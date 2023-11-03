@@ -15,7 +15,7 @@ public class BedrockRuntimeController {
 
     static BedrockRuntimeClient client() {
         return BedrockRuntimeClient.builder()
-                .region(Region.of(BedrockController.awsRegion))
+                .region(Region.of(ListFoundationModels.awsRegion))
                 .credentialsProvider(DefaultCredentialsProvider.create())
                 .build();
     }

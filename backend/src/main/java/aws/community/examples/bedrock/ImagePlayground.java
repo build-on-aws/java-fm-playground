@@ -11,7 +11,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import java.util.List;
 
 @RestController
-public class InvokeStableDiffusion extends BedrockRuntimeController {
+public class ImagePlayground extends BedrockRuntimeController {
 
     @PostMapping ("/foundation-models/model/stability.stable-diffusion-xl/invoke")
     public InvokeStableDiffusionXlResponse invoke(@RequestBody InvokeStableDiffusionXlRequest body) {

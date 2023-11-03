@@ -1,7 +1,6 @@
 package aws.community.examples.bedrock;
 
 import org.json.JSONObject;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,10 +13,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
-public class InvokeClaudeV2 extends BedrockRuntimeController {
+public class ChatPlayground {
 
     @PostMapping("/foundation-models/model/anthropic.claude-v2/invoke")
-    public InvokeClaudeV2ChatResponse invoke(@RequestBody InvokeClaudeV2ChatRequest body) {
+    public InvokeClaudeV2ChatResponse invokeClaudeV2(@RequestBody InvokeClaudeV2ChatRequest body) {
 
         try (BedrockRuntimeClient client = BedrockRuntimeController.client()) {
             String prompt = extractPrompt(body);

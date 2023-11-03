@@ -51,11 +51,11 @@ deploy.cmd
 
 ## 👨‍💻 Access the Application
 
-After successful deployment of the application, open your web browser and navigate to: http://localhost:3000
+After successful deployment, open your web browser and navigate to: http://localhost:3000
 
-You should now see the Spring Boot FM Playground up and running!
+You should now see the Java FM Playground up and running!
 
-Happy Coding! 👩‍💻👨‍💻
+Have fun! 👩‍💻👨‍💻
 
 ## Security
 

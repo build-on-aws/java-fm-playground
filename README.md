@@ -8,6 +8,10 @@ Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample 
 
 This repository offers a 🌱 **Spring Boot** application with a Next.js frontend that can be executed locally.
 
+👇 The screenshot below shows the app in action, specifically using the chat playground
+
+![Screenshot of the Java FM Playground, showing an example of a chat with Anthropic Claude v2](screenshot.png)
+
 ## 🛠 Prerequisites
 
 Before diving in, make sure you have the following installed:
@@ -36,7 +40,7 @@ cd java-fm-playground
 ./deploy.sh
 ```
 
-### 🪟 Windows
+### 💻 Windows
 
 ```bash
 # Clone the repository

@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class InvokeStableDiffusion extends BedrockRuntimeController {
 
     @PostMapping ("/foundation-models/model/stability.stable-diffusion-xl/invoke")

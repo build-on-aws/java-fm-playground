@@ -14,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class InvokeClaudeV2 extends BedrockRuntimeController {
 
     @PostMapping("/foundation-models/model/anthropic.claude-v2/invoke")

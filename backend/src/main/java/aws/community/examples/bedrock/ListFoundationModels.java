@@ -10,7 +10,6 @@ import software.amazon.awssdk.services.bedrock.model.ListFoundationModelsRespons
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class ListFoundationModels extends BedrockController {
 
     @GetMapping("/foundation-models")

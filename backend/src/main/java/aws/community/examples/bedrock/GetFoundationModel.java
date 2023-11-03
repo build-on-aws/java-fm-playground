@@ -10,7 +10,6 @@ import software.amazon.awssdk.services.bedrock.model.GetFoundationModelRequest;
 import software.amazon.awssdk.services.bedrock.model.GetFoundationModelResponse;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class GetFoundationModel extends BedrockController {
 
     @GetMapping("/foundation-models/model")

@@ -16,10 +16,10 @@ This repository offers a 🌱 **Spring Boot** application with a Next.js fronten
 
 Before diving in, make sure you have the following installed:
 
-- Java JDK 17 or higher
-- Maven
-- Node.js and npm (for the Next.js frontend)
-- An active AWS account with configured credentials
+- Java JDK 17 or higher (check out [Amazon Corretto](https://aws.amazon.com/corretto), a free distro of the OpenJDK)
+- [Apache Maven](https://maven.apache.org/install.html)
+- [Node.js (18.17 or later) and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (for the Next.js frontend)
+- An active [AWS account](https://aws.amazon.com/free/) with configured credentials
 
 > 🚨 **Note:** AWS accounts don't have access to models by default. You can [add access to specific models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) using the model access page.
 

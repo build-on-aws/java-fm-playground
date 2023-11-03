@@ -19,7 +19,7 @@ export default function ImageContainer() {
         const prompt = {prompt: inputValue.trim()}
 
         try {
-            const response = await fetch('http://localhost:8080/foundation-models/model/stability.stable-diffusion-xl/invoke', {
+            const response = await fetch('http://localhost:8080/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(prompt)

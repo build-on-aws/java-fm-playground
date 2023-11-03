@@ -14,6 +14,5 @@ export default function Assistant({text}) {
                 </div>
             </div>
         </div>
-
     )
 }

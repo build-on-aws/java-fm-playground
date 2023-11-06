@@ -20,9 +20,16 @@ public class ChatPlayground {
 
     @PostMapping("/foundation-models/model/chat/{modelId}/invoke")
     public Claude.Response invokeLlm(@PathVariable String modelId, @RequestBody Claude.Request body) {
-        return switch (modelId) {
-            case "anthropic.claude-v2" -> Claude.invoke(body, modelId, Claude.Type.CHAT, client);
-            default -> null;
-        };
+        String  systemPrompt =
+                """
+                Take the role of a friendly chat bot. Your responses are brief.
+                You sometimes use emojis where appropriate, but you don't overdo it.
+                You engage human in a dialog by regularly asking questions,
+                except when Human indicates that the conversation is over.
+                """;
+
+        String prompt = systemPrompt + "\n\n" + body.prompt();
+
+        return Claude.invoke(client, prompt, 0.8, 1024);
     }
 }

@@ -86,6 +86,10 @@ To run the frontend on a different port:
 npm run dev -- --port NEW_PORT
 ```
 
+## Troubleshooting
+
+The AWS Region is hard-coded in the application. However, if your local `AWS_REGION` environment variable is set to a different region, the application may fail. In this case, please make sure to either unset `AWS_REGION`, or set it to `us-east-1`.
+
 ## License
 
 This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.

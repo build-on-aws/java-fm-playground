@@ -2,7 +2,6 @@ package aws.community.examples.bedrock.controller;
 
 import aws.community.examples.bedrock.models.Claude;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +17,8 @@ public class TextPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-models/model/text/{modelId}/invoke")
-    public Claude.Response invokeLlm(@PathVariable String modelId, @RequestBody Claude.Request body) {
+    @PostMapping("/foundation-models/model/text/anthropic.claude-v2/invoke")
+    public Claude.Response invoke(@RequestBody Claude.Request body) {
         return Claude.invoke(client, body.prompt(), extractTemperature(body), extractMaxTokens(body));
     }
 

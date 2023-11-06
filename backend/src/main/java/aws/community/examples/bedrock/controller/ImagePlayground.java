@@ -15,12 +15,10 @@ public class ImagePlayground {
         this.client = client;
     }
 
-    @PostMapping ("/foundation-models/model/image/{modelId}/invoke")
-    public StableDiffusion.Response invoke(@PathVariable String modelId, @RequestBody StableDiffusion.Request body) {
+    @PostMapping ("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
+    public StableDiffusion.Response invoke(@RequestBody StableDiffusion.Request body) {
 
-        return switch (modelId) {
-            case "stability.stable-diffusion-xl" -> StableDiffusion.invoke(body, client);
-            default -> null;
-        };
+        return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());
+
     }
 }

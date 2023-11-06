@@ -1,14 +1,18 @@
 "use client"
 
 import React, {useEffect, useState} from "react";
+import GlobalConfig from "@/app/app.config";
 
 export default function Models() {
     const [data, setData] = useState(null);
 
+    const endpoint = "/foundation-models";
+    const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:49152/foundation-models");
+                const response = await fetch(api);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

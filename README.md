@@ -1,65 +1,89 @@
 # ☕ Java FM Playground
 
-Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java.
+Welcome to the Java Foundation Model (FM) Playground, a sandbox for exploring Java integration with **Amazon Bedrock**.
 
-> 🚨 **Note:** This is a sample application and not intended for production use. It's all about learning and experimenting!
+> 🚨 **Important:** This application is for educational purposes and not intended for production use.
 
-## What's Inside?
+## Overview
 
-This repository offers a 🌱 **Spring Boot** application with a **Next.js** frontend that can be executed locally.
+This repository includes a **Spring Boot** application and a **Next.js** frontend, both executable locally. Below is a screenshot of the app in action.
 
-👇 Check out the screenshot below to see the app in action.
-
-![Screenshot of the Java FM Playground, showing an example of a chat with Anthropic Claude v2](screenshot.png)
+![Screenshot of the Java FM Playground](screenshot.png)
 
 ## Prerequisites
 
-Before diving in, make sure you have the following installed:
+Ensure you have the following installed:
 
-- Java JDK 17 or higher (check out [Amazon Corretto](https://aws.amazon.com/corretto), a free distro of the OpenJDK)
+- Java JDK 17+ ([Amazon Corretto](https://aws.amazon.com/corretto))
 - [Apache Maven](https://maven.apache.org/install.html)
-- [Node.js (18.17 or later) and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (for the Next.js frontend)
-- An active [AWS account](https://aws.amazon.com/free/) with configured credentials
+- [Node.js (v18.17+)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with npm (for Next.js frontend)
+- Configured [AWS account](https://aws.amazon.com/free/) with permissions to access Amazon Bedrock
+- To use Bedrock, you must [enable access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) to at least the following models in `us-east-1`: 
+  1. Anthropic: Claude
+  2. Stability AI: Stable Diffusion XL
 
-> 🚨 **Note:** AWS accounts don't have access to models by default. You can [add access to specific models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) using the model access page.
+## Running the Application
 
-## How to Deploy
+Ensure prerequisites are met, then proceed with the following steps:
 
-Before proceeding, ensure you've met all the prerequisites above.
+### Clone the repository
 
-### 🐧 Linux
+Open a terminal, navigate to a directory of your choice, and execute the following command:
 
-```bash
-# Clone the repository
+```shell
 git clone https://github.com/build-on-aws/java-fm-playground.git
-
-# Navigate into the directory
-cd java-fm-playground
-
-# Deploy the application
-./deploy.sh
 ```
 
-### 💻 Windows
+### Backend Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/build-on-aws/java-fm-playground.git
+In the java-fm-playground/backend directory, run:
 
-# Navigate into the directory
-cd java-fm-playground
-
-# Deploy the application
-deploy.cmd
+```shell
+mvn spring-boot:run
 ```
 
-## Access the Application
+> 🛠 The backend runs on port 55500 by default. See troubleshooting for port changes.
 
-After successful deployment, open your web browser and navigate to: http://localhost:3000
+### Frontent Setup
 
-You should now see the Java FM Playground up and running!
+In a new terminal window, within java-fm-playground/frontend, execute:
 
-Have fun!
+```shell
+npm run dev
+```
+
+> 🛠 the frontend serves on port 3000 by default. See below for port changes.
+
+## Accessing the Application
+
+Open `http://localhost:3000` in your web browser to interact with the application.
+
+## Stopping the Application
+
+To halt the application, you will need to stop both the backend and frontend processes.
+
+### Stopping the Frontend
+
+In the terminal where the frontend is running, press `Ctrl + C` to terminate the process.
+
+### Stopping the Backend
+
+Similarly, in the backend terminal, use the `Ctrl + C` shortcut to stop the server.
+
+If you encounter any issues, you can forcefully terminate the processes by finding the process ID (`PID`) and using the `kill` command on Unix-based systems or Task Manager on Windows.
+
+
+## Using Different Ports
+
+Change the backend port in the following files:
+- `backend/src/main/resources/application.yml`
+- `frontend/app/app.config.js`
+
+To run the frontend on a different port:
+
+```shell
+npm run dev -- --port NEW_PORT
+```
 
 ## License
 

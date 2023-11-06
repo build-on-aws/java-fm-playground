@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Spinner from "@/components/Spinner";
 import StyleSelector from "@/components/image/StyleSelector";
+import GlobalConfig from "@/app/app.config";
 
 export default function ImageContainer() {
     const [imgSrc, setImgSrc] = useState('/placeholder.png');
     const [inputValue, setInputValue] = useState('');
     const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
+
+    const endpoint = "/foundation-models/model/image/stability.stable-diffusion-xl/invoke";
+    const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     const handleStyleChange = (newStyle) => {
         setStylePreset(newStyle);
@@ -20,11 +24,11 @@ export default function ImageContainer() {
     const sendMessage = async () => {
         if (inputValue.trim() === '') { return; }
 
+        setIsLoading(true);
+
         if (stylePreset === "no style") {
             setStylePreset("");
         }
-
-        setIsLoading(true);
 
         const prompt = {
             prompt: inputValue.trim(),
@@ -32,7 +36,7 @@ export default function ImageContainer() {
         }
 
         try {
-            const response = await fetch('http://localhost:49152/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
+            const response = await fetch(api, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(prompt)

@@ -95,7 +95,7 @@ export default function TextContainer() {
 
     return <div className="flex flex-col flex-auto h-full p-6">
         <h3 className="text-3xl font-medium text-gray-700">Text Playground (Anthropic Claude V2)</h3>
-        <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 p-4 mt-8">
+        <div className="flex flex-col flex-shrink-0 rounded-2xl bg-gray-100 p-4 mt-8">
             <div className="flex flex-col h-full overflow-x-auto mb-4">
                 <div className="flex flex-col h-full">
                     <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200">

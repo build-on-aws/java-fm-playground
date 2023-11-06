@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 export default async function Model({params: {modelId}}) {
-    const res = await fetch(`http://localhost:8080/foundation-models/model?id=${modelId}`);
+    const res = await fetch(`http://localhost:49152/foundation-models/model?id=${modelId}`);
     const data = await res.json();
 
     return (

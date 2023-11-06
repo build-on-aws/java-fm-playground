@@ -1,10 +1,31 @@
-"use client";
+"use client"
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-export default async function Models() {
-    const res = await fetch("http://localhost:8080/foundation-models");
-    const data = await res.json();
+export default function Models() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:49152/foundation-models");
+
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setData(data);
+            } catch (error) {
+                console.error('Fetching data error:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    console.log(data);
 
     return (
         <div className="container px-6 py-8 mx-auto">
@@ -26,8 +47,7 @@ export default async function Models() {
                             </tr>
                             </thead>
                             <tbody className="bg-white">
-                            {data.map(item => (
-
+                            {data ? data.map(item => (
                                 <tr key={item.modelId}>
                                     <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                         {item.providerName}
@@ -40,7 +60,9 @@ export default async function Models() {
                                            className="text-indigo-600 hover:text-indigo-900">Show details</a>
                                     </td>
                                 </tr>
-                            ))}
+                            )) : (
+                                <tr></tr>
+                            )}
                             </tbody>
                         </table>
                     </div>

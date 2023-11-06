@@ -72,7 +72,7 @@ export default function TextContainer() {
 
             setIsLoading(true);
 
-            const response = await fetch("http://localhost:8080/foundation-models/model/text/anthropic.claude-v2/invoke", {
+            const response = await fetch("http://localhost:49152/foundation-models/model/text/anthropic.claude-v2/invoke", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: body

@@ -32,7 +32,7 @@ export default function ImageContainer() {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
+            const response = await fetch('http://localhost:49152/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(prompt)

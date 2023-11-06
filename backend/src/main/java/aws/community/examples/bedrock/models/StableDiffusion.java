@@ -20,7 +20,7 @@ public class StableDiffusion {
         JSONObject jsonBody = new JSONObject()
                 .put("text_prompts", promptsJson)
                 .put("cfg_scale", 20)
-                .put("steps", 50);
+                .put("steps", 100);
 
         if (STYLES.contains(body.stylePreset)) {
             jsonBody.put("style_preset", body.stylePreset);

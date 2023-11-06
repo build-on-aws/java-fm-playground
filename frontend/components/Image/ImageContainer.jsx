@@ -6,12 +6,11 @@ import StyleSelector from "@/components/image/StyleSelector";
 export default function ImageContainer() {
     const [imgSrc, setImgSrc] = useState('/placeholder.png');
     const [inputValue, setInputValue] = useState('');
+    const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
 
-    let style = "no style";
-
     const handleStyleChange = (newStyle) => {
-        style = newStyle;
+        setStylePreset(newStyle);
     };
 
     const handleInputChange = (e) => {
@@ -20,15 +19,16 @@ export default function ImageContainer() {
 
     const sendMessage = async () => {
         if (inputValue.trim() === '') { return; }
-        if (style === "no style") {
-            style = "";
+
+        if (stylePreset === "no style") {
+            setStylePreset("");
         }
 
         setIsLoading(true);
 
         const prompt = {
             prompt: inputValue.trim(),
-            stylePreset: style
+            stylePreset: stylePreset
         }
 
         try {

@@ -29,14 +29,14 @@ export default function ChatContainer() {
         setInputValue('');
 
         try {
-            const prompt = extractPrompt([...conversation, newMessage]);
+            const message = extractPrompt([...conversation, newMessage]);
 
             setIsLoading(true);
 
-            const response = await fetch("http://localhost:8080/foundation-models/model/text/anthropic.claude-v2/invoke", {
+            const response = await fetch("http://localhost:8080/foundation-models/model/chat/anthropic.claude-v2/invoke", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({prompt: prompt})
+                body: JSON.stringify({ message: message })
             });
 
             if (!response.ok) {

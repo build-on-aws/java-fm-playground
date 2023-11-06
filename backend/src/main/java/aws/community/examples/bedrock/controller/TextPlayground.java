@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 
 @RestController
-public class ChatPlayground {
+public class TextPlayground {
 
     private final BedrockRuntimeClient client;
 
     @Autowired
-    public ChatPlayground(final BedrockRuntimeClient client) {
+    public TextPlayground(final BedrockRuntimeClient client) {
         this.client = client;
     }
 
-    @PostMapping("/foundation-models/model/chat/{modelId}/invoke")
+    @PostMapping("/foundation-models/model/text/{modelId}/invoke")
     public Claude.Response invokeLlm(@PathVariable String modelId, @RequestBody Claude.Request body) {
         return switch (modelId) {
-            case "anthropic.claude-v2" -> Claude.invoke(body, modelId, Claude.Type.CHAT, client);
+            case "anthropic.claude-v2" -> Claude.invoke(body, modelId, Claude.Type.TEXT, client);
             default -> null;
         };
     }

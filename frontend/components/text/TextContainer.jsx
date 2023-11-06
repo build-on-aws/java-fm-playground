@@ -4,11 +4,18 @@ import React, { useState } from "react";
 
 export default function TextContainer() {
     const [inputValue, setInputValue] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
+
+    const [temperatureValue, setTemperatureValue] = useState(0.8);
+    const handleTemperatureValueChange = (e) => {
+        setTemperatureValue(e.target.value);
+    };
+
+    const [isLoading, setIsLoading] = useState(false);
+
+
 
     const isNullOrBlankOrEmpty = (str) => {
         return str == null || str.match(/^ *$/) !== null;
@@ -66,13 +73,63 @@ export default function TextContainer() {
                             </textarea>
                         </div>
                     </div>
-                    <button
-                        type="button"
-                        disabled={isLoading}
-                        onClick={sendMessage}
-                        className={getButtonClass()}>
-                        <span>Send</span>
-                        <span className="ml-2">
+                </div>
+            </div>
+            <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+                <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+                    <div className="">
+                        <div className="relative w-full">
+                            <label htmlFor="temperature">
+                                Temperature:
+                            </label>
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <div className="relative w-14">
+                            <input
+                                placeholder="0.8"
+                                id="temperature"
+                                type="text"
+                                value={temperatureValue}
+                                onChange={handleTemperatureValueChange}
+                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                            />
+
+                        </div>
+                    </div>
+                    {/*<div className="ml-8">*/}
+                    {/*    <div className="relative">*/}
+                    {/*        <label htmlFor="tokens">*/}
+                    {/*            Max. length:*/}
+                    {/*        </label>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="ml-4">*/}
+                    {/*    <div className="relative w-20">*/}
+                    {/*        <input*/}
+                    {/*            placeholder="1024"*/}
+                    {/*            id="tokens"*/}
+                    {/*            type="text"*/}
+                    {/*            // value={inputValue}*/}
+                    {/*            // onChange={handleInputChange}*/}
+                    {/*            // onKeyPress={(event) => {*/}
+                    {/*            //     if (event.key === 'Enter') {*/}
+                    {/*            //         sendMessage();*/}
+                    {/*            //     }*/}
+                    {/*            // }}*/}
+                    {/*            className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"*/}
+                    {/*        />*/}
+
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <div className="ml-4 ml-auto">
+                        <button
+                            type="button"
+                            disabled={isLoading}
+                            onClick={sendMessage}
+                            className={getButtonClass()}>
+                            <span>Send</span>
+                            <span className="ml-2">
                             <svg
                                 className="w-4 h-4 transform rotate-45 -mt-px"
                                 fill="none"
@@ -87,9 +144,10 @@ export default function TextContainer() {
                               </path>
                             </svg>
                         </span>
-                    </button>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>;
-}
+    </div>
+};

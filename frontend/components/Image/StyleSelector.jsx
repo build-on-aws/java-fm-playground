@@ -37,7 +37,7 @@ export default function StyleSelector({ onStyleChange }) {
     }
 
     return (
-        <div className="flex-grow ml-4">
+        <div className="w-36 ml-4">
             <div className="relative w-full">
                 <button id="dropdown-button"
                         onClick={toggleDropdown}
@@ -54,7 +54,7 @@ export default function StyleSelector({ onStyleChange }) {
                     </svg>
                 </button>
                 {isOpen && (
-                    <div className="absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1">
+                    <div className="absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 text-sm">
                         {styles.map((item, index) => (
                             <a key={index}
                                onClick={() => selectStyle(item)}

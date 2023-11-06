@@ -69,8 +69,7 @@ export default function ImageContainer() {
                                     }
                                 }}
                                 placeholder="Image prompt"
-                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-                            />
+                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
                         </div>
                     </div>
                     <StyleSelector onStyleChange={handleStyleChange}/>

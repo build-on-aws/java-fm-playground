@@ -14,7 +14,7 @@ This repository includes a **Spring Boot** application and a **Next.js** fronten
 
 Ensure you have the following installed:
 
-- Java JDK 17+ ([Amazon Corretto](https://aws.amazon.com/corretto))
+- Java JDK 17+ (e.g. [Amazon Corretto](https://aws.amazon.com/corretto), a free distro of the JDK)
 - [Apache Maven](https://maven.apache.org/install.html)
 - [Node.js (v18.17+)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with npm (for Next.js frontend)
 - Configured [AWS account](https://aws.amazon.com/free/) with permissions to access Amazon Bedrock

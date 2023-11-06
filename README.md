@@ -42,7 +42,7 @@ In the `java-fm-playground/backend` directory, run:
 mvn spring-boot:run
 ```
 
-> 🛠 The backend runs on port 55500 by default. See troubleshooting for port changes.
+> 🛠 The backend runs on port 55500 by default. See [below](#using-different-ports) for port changes.
 
 ### Frontent Setup
 
@@ -52,7 +52,7 @@ In a new terminal window, navigate to `java-fm-playground/frontend` and execute:
 npm run dev
 ```
 
-> 🛠 The frontend runs on port 3000 by default. See below for port changes.
+> 🛠 The frontend runs on port 3000 by default. See [below](#using-different-ports) for port changes.
 
 ## Accessing the Application
 

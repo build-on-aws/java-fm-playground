@@ -6,7 +6,7 @@ Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample 
 
 ## What's Inside?
 
-This repository offers a 🌱 **Spring Boot** application with a Next.js frontend that can be executed locally.
+This repository offers a 🌱 **Spring Boot** application with a **Next.js** frontend that can be executed locally.
 
 👇 Check out the screenshot below to see the app in action.
 

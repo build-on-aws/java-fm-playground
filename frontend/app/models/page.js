@@ -10,7 +10,6 @@ export default function Models() {
             try {
                 const response = await fetch("http://localhost:49152/foundation-models");
 
-
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

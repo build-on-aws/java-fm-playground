@@ -36,7 +36,7 @@ git clone https://github.com/build-on-aws/java-fm-playground.git
 
 ### Backend Setup
 
-In the java-fm-playground/backend directory, run:
+In the `java-fm-playground/backend` directory, run:
 
 ```shell
 mvn spring-boot:run
@@ -46,13 +46,13 @@ mvn spring-boot:run
 
 ### Frontent Setup
 
-In a new terminal window, within java-fm-playground/frontend, execute:
+In a new terminal window, navigate to `java-fm-playground/frontend` and execute:
 
 ```shell
 npm run dev
 ```
 
-> 🛠 the frontend serves on port 3000 by default. See below for port changes.
+> 🛠 The frontend runs on port 3000 by default. See below for port changes.
 
 ## Accessing the Application
 

@@ -7,6 +7,7 @@ import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class StableDiffusion {
@@ -21,6 +22,10 @@ public class StableDiffusion {
                 .put("cfg_scale", 20)
                 .put("steps", 50);
 
+        if (STYLES.contains(body.stylePreset)) {
+            jsonBody.put("style_preset", body.stylePreset);
+        }
+
         SdkBytes sdkBytesBody = SdkBytes.fromUtf8String(jsonBody.toString());
 
         InvokeModelRequest request = InvokeModelRequest.builder()
@@ -29,7 +34,6 @@ public class StableDiffusion {
                 .build();
 
         InvokeModelResponse response = client.invokeModel(request);
-
         byte[] bytes = new JSONObject(response.body().asUtf8String())
                 .getJSONArray("artifacts")
                 .getJSONObject(0)
@@ -38,8 +42,29 @@ public class StableDiffusion {
                 .getBytes();
 
         return new Response(bytes);
+
     }
 
-    public record Request(String prompt) { }
+    public record Request(String prompt, String stylePreset) { }
     public record Response(byte[] imageByteArray) { }
+
+    public static final List<String> STYLES = Arrays.asList(
+            "3d-model",
+            "analog-film",
+            "anime",
+            "cinematic",
+            "comic-book",
+            "digital-art",
+            "enhance",
+            "fantasy-art",
+            "isometric",
+            "line-art",
+            "low-poly",
+            "modeling-compound",
+            "neon-punk",
+            "origami",
+            "photographic",
+            "pixel-art",
+            "tile-texture"
+    );
 }

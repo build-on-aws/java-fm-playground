@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Spinner from "@/components/Spinner";
+import StyleSelector from "@/components/image/StyleSelector";
 
 export default function ImageContainer() {
     const [imgSrc, setImgSrc] = useState('/placeholder.png');
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    let style = "no style";
+
+    const handleStyleChange = (newStyle) => {
+        style = newStyle;
+    };
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -13,10 +20,16 @@ export default function ImageContainer() {
 
     const sendMessage = async () => {
         if (inputValue.trim() === '') { return; }
+        if (style === "no style") {
+            style = "";
+        }
 
         setIsLoading(true);
 
-        const prompt = {prompt: inputValue.trim()}
+        const prompt = {
+            prompt: inputValue.trim(),
+            stylePreset: style
+        }
 
         try {
             const response = await fetch('http://localhost:8080/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
@@ -60,6 +73,7 @@ export default function ImageContainer() {
                             />
                         </div>
                     </div>
+                    <StyleSelector onStyleChange={handleStyleChange}/>
                     <div className="ml-4">
                         <button
                             type="button"

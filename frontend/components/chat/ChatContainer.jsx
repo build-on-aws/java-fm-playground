@@ -4,11 +4,15 @@ import Human from "@/components/chat/Human";
 import React, { useState } from "react";
 import Assistant from "@/components/chat/Assistant";
 import Loader from "@/components/chat/Loader";
+import GlobalConfig from "@/app/app.config";
 
 export default function ChatContainer() {
     const [conversation, setConversation] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const endpoint = "/foundation-models/model/chat/anthropic.claude-v2/invoke";
+    const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -33,7 +37,7 @@ export default function ChatContainer() {
 
             setIsLoading(true);
 
-            const response = await fetch("http://localhost:49152/foundation-models/model/chat/anthropic.claude-v2/invoke", {
+            const response = await fetch(api, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: message })

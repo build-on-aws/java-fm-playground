@@ -1,4 +1,4 @@
 aws:
   region: us-east-1
 server:
-  port: 49152
+  port: 55500

@@ -2,14 +2,18 @@
 
 import React, {useEffect, useState} from "react";
 import ModelDetails from "@/components/models/ModelDetails";
+import GlobalConfig from "@/app/app.config";
 
 export default function Model({params: {modelId}}) {
     const [data, setData] = useState(null);
 
+    const endpoint = `/foundation-models/model?id=${modelId}`;
+    const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:49152/foundation-models/model?id=${modelId}`);
+                const response = await fetch(api);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

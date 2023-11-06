@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import GlobalConfig from "@/app/app.config"
 
 export default function TextContainer() {
     const [inputValue, setInputValue] = useState("");
@@ -60,8 +61,10 @@ export default function TextContainer() {
     }
 
     const sendMessage = async () => {
-
         if (isNullOrBlankOrEmpty(inputValue)) { return; }
+
+        const endpoint = "/foundation-models/model/text/anthropic.claude-v2/invoke";
+        const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
         try {
             const body = JSON.stringify({
@@ -72,7 +75,8 @@ export default function TextContainer() {
 
             setIsLoading(true);
 
-            const response = await fetch("http://localhost:49152/foundation-models/model/text/anthropic.claude-v2/invoke", {
+
+            const response = await fetch(api, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: body

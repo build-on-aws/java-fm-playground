@@ -3,25 +3,51 @@
 import React, { useState } from "react";
 
 export default function TextContainer() {
-    const [isLoading, setIsLoading] = useState(false);
-
     const [inputValue, setInputValue] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [temperatureValue, setTemperatureValue] = useState(0.8);
+    const [maxTokensValue, setMaxTokensValue] = useState(300);
+
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
-
     };
-    const [temperatureValue, setTemperatureValue] = useState(0.8);
-    const handleTemperatureValueChange = (e) => {
-        let value = e.target.value;
 
+    const handleTemperatureValueChange = (e) => {
+
+        let value = e.target.value;
         if (isNaN(value)) {
             value = temperatureValue;
         } else if (value > 2) {
             value = 2;
+
+        }
+        setTemperatureValue(value);
+
+    };
+
+    const handleMaxTokensValueChange = (e) => {
+        let value = e.target.value;
+
+        if (isNaN(value)) {
+            value = maxTokensValue;
+        } else if (value > 2048) {
+            value = 2048;
         }
 
-        setTemperatureValue(value);
+        setMaxTokensValue(value);
     };
+
+    const handleMaxTokensValueLeave = (e) => {
+        let value = e.target.value;
+
+        if (isNaN(value)) {
+            value = maxTokensValue;
+        } else if (value < 85) {
+            value = 85;
+        }
+
+        setMaxTokensValue(value);
+    }
 
     const isNullOrBlankOrEmpty = (str) => {
         return str == null || str.match(/^ *$/) !== null;
@@ -40,7 +66,8 @@ export default function TextContainer() {
         try {
             const body = JSON.stringify({
                 prompt: inputValue,
-                temperature: temperatureValue
+                temperature: temperatureValue,
+                maxTokens: maxTokensValue
             });
 
             setIsLoading(true);
@@ -106,31 +133,27 @@ export default function TextContainer() {
 
                         </div>
                     </div>
-                    {/*<div className="ml-8">*/}
-                    {/*    <div className="relative">*/}
-                    {/*        <label htmlFor="tokens">*/}
-                    {/*            Max. length:*/}
-                    {/*        </label>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="ml-4">*/}
-                    {/*    <div className="relative w-20">*/}
-                    {/*        <input*/}
-                    {/*            placeholder="1024"*/}
-                    {/*            id="tokens"*/}
-                    {/*            type="text"*/}
-                    {/*            // value={inputValue}*/}
-                    {/*            // onChange={handleInputChange}*/}
-                    {/*            // onKeyPress={(event) => {*/}
-                    {/*            //     if (event.key === 'Enter') {*/}
-                    {/*            //         sendMessage();*/}
-                    {/*            //     }*/}
-                    {/*            // }}*/}
-                    {/*            className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"*/}
-                    {/*        />*/}
+                    <div className="ml-8">
+                        <div className="relative">
+                            <label htmlFor="tokens">
+                                Max. length:
+                            </label>
+                        </div>
+                    </div>
+                    <div className="ml-4">
+                        <div className="relative w-20">
+                            <input
+                                placeholder="300"
+                                id="tokens"
+                                type="text"
+                                value={maxTokensValue}
+                                onChange={handleMaxTokensValueChange}
+                                onBlur={handleMaxTokensValueLeave}
+                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                            />
 
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                        </div>
+                    </div>
                     <div className="ml-4 ml-auto">
                         <button
                             type="button"

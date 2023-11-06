@@ -17,7 +17,7 @@ Ensure you have the following installed:
 - Java JDK 17+ (e.g. [Amazon Corretto](https://aws.amazon.com/corretto), a free distro of the JDK)
 - [Apache Maven](https://maven.apache.org/install.html)
 - [Node.js (v18.17+)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with npm (for Next.js frontend)
-- Configured [AWS account](https://aws.amazon.com/free/) with permissions to access Amazon Bedrock
+- An [AWS account](https://aws.amazon.com/free/) with permissions to access Amazon Bedrock
 - To use Bedrock, you must [enable access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) to at least the following models in `us-east-1`: 
   1. Anthropic: Claude
   2. Stability AI: Stable Diffusion XL

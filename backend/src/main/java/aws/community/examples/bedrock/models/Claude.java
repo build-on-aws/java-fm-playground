@@ -7,14 +7,23 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
 public class Claude {
-    public static Response invoke(Request body, String modelId, BedrockRuntimeClient client) {
+    public enum Type {
+        CHAT,
+        TEXT
+    }
 
-        String systemPrompt =
-            """
-            Take the role of a friendly chat bot. Your responses are brief.
-            You sometimes use emojis where appropriate, but you don't overdo it.
-            Engage in a dialog by asking questions, except when Human indicates that the conversation is over.
-            """;
+    public static Response invoke(Request body, String modelId, Type type, BedrockRuntimeClient client) {
+
+        String systemPrompt = "";
+        if (type ==Type.CHAT) {
+            systemPrompt =
+                """
+                Take the role of a friendly chat bot. Your responses are brief.
+                You sometimes use emojis where appropriate, but you don't overdo it.
+                You engage human in a dialog by regularly asking questions,
+                except when Human indicates that the conversation is over.
+                """;
+        }
 
         JSONObject jsonBody = new JSONObject()
                 .put("prompt", "Human: " + systemPrompt + " " + body.prompt() + " Assistant:")

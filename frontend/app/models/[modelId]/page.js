@@ -1,9 +1,29 @@
-import React from "react";
-import Link from "next/link";
+"use client"
 
-export default async function Model({params: {modelId}}) {
-    const res = await fetch(`http://localhost:8080/foundation-models/model?id=${modelId}`);
-    const data = await res.json();
+import React, {useEffect, useState} from "react";
+import ModelDetails from "@/components/models/ModelDetails";
+
+export default function Model({params: {modelId}}) {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:49152/foundation-models/model?id=${modelId}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setData(data);
+            } catch (error) {
+                console.error('Fetching data error:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="container px-6 py-8 mx-auto">
@@ -12,58 +32,9 @@ export default async function Model({params: {modelId}}) {
                 <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
                         className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                        <table className="min-w-full">
-                            <tbody className="bg-white">
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Provider:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.providerName}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Name:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.modelName}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Model ID:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.modelId}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Customizations:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.customizationsSupported}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Output Modalities:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.outputModalities}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    Model ARN:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap border-b border-gray-200">
-                                    {data.modelArn}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        {data ?
+                            <ModelDetails data={data} /> : <div></div>
+                        }
                     </div>
                 </div>
             </div>

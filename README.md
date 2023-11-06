@@ -1,10 +1,10 @@
-# 🎮 Java FM Playground
+# ☕ Java FM Playground
 
 Welcome to the Java Foundation Model (FM) Playground! This is your go-to sample application for exploring how to utilize **Amazon Bedrock** using Java.
 
 > 🚨 **Note:** This is a sample application and not intended for production use. It's all about learning and experimenting!
 
-## 📦 What's Inside?
+## What's Inside?
 
 This repository offers a 🌱 **Spring Boot** application with a Next.js frontend that can be executed locally.
 
@@ -12,7 +12,7 @@ This repository offers a 🌱 **Spring Boot** application with a Next.js fronten
 
 ![Screenshot of the Java FM Playground, showing an example of a chat with Anthropic Claude v2](screenshot.png)
 
-## 🛠 Prerequisites
+## Prerequisites
 
 Before diving in, make sure you have the following installed:
 
@@ -23,7 +23,7 @@ Before diving in, make sure you have the following installed:
 
 > 🚨 **Note:** AWS accounts don't have access to models by default. You can [add access to specific models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#add-model-access) using the model access page.
 
-## 🚀 How to Deploy
+## How to Deploy
 
 Before proceeding, ensure you've met all the prerequisites above.
 
@@ -53,18 +53,18 @@ cd java-fm-playground
 deploy.cmd
 ```
 
-## 👨‍💻 Access the Application
+## Access the Application
 
 After successful deployment, open your web browser and navigate to: http://localhost:3000
 
 You should now see the Java FM Playground up and running!
 
-Have fun! 👩‍💻👨‍💻
+Have fun!
+
+## License
+
+This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
 
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.

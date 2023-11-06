@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Spinner from "@/components/Spinner";
+import StyleSelector from "@/components/image/StyleSelector";
 
 export default function ImageContainer() {
     const [imgSrc, setImgSrc] = useState('/placeholder.png');
     const [inputValue, setInputValue] = useState('');
+    const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
+
+    const handleStyleChange = (newStyle) => {
+        setStylePreset(newStyle);
+    };
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -14,9 +20,16 @@ export default function ImageContainer() {
     const sendMessage = async () => {
         if (inputValue.trim() === '') { return; }
 
+        if (stylePreset === "no style") {
+            setStylePreset("");
+        }
+
         setIsLoading(true);
 
-        const prompt = {prompt: inputValue.trim()}
+        const prompt = {
+            prompt: inputValue.trim(),
+            stylePreset: stylePreset
+        }
 
         try {
             const response = await fetch('http://localhost:8080/foundation-models/model/image/stability.stable-diffusion-xl/invoke', {
@@ -56,10 +69,10 @@ export default function ImageContainer() {
                                     }
                                 }}
                                 placeholder="Image prompt"
-                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-                            />
+                                className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
                         </div>
                     </div>
+                    <StyleSelector onStyleChange={handleStyleChange}/>
                     <div className="ml-4">
                         <button
                             type="button"

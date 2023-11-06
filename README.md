@@ -24,7 +24,7 @@ Ensure you have the following installed:
 
 ## Running the Application
 
-Ensure prerequisites are met, then proceed with the following steps:
+After verifying the prerequisites, follow these steps:
 
 ### Clone the repository
 

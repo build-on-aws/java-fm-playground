@@ -3,19 +3,25 @@
 import React, { useState } from "react";
 
 export default function TextContainer() {
+    const [isLoading, setIsLoading] = useState(false);
+
     const [inputValue, setInputValue] = useState("");
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
-    };
 
+    };
     const [temperatureValue, setTemperatureValue] = useState(0.8);
     const handleTemperatureValueChange = (e) => {
-        setTemperatureValue(e.target.value);
+        let value = e.target.value;
+
+        if (isNaN(value)) {
+            value = temperatureValue;
+        } else if (value > 2) {
+            value = 2;
+        }
+
+        setTemperatureValue(value);
     };
-
-    const [isLoading, setIsLoading] = useState(false);
-
-
 
     const isNullOrBlankOrEmpty = (str) => {
         return str == null || str.match(/^ *$/) !== null;
@@ -32,14 +38,17 @@ export default function TextContainer() {
         if (isNullOrBlankOrEmpty(inputValue)) { return; }
 
         try {
-            const prompt = JSON.stringify({prompt: inputValue});
+            const body = JSON.stringify({
+                prompt: inputValue,
+                temperature: temperatureValue
+            });
 
             setIsLoading(true);
 
             const response = await fetch("http://localhost:8080/foundation-models/model/text/anthropic.claude-v2/invoke", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({prompt: prompt})
+                body: body
             });
 
             if (!response.ok) {

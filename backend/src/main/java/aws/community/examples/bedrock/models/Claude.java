@@ -27,8 +27,8 @@ public class Claude {
 
         JSONObject jsonBody = new JSONObject()
                 .put("prompt", "Human: " + systemPrompt + " " + body.prompt() + " Assistant:")
-                .put("temperature", 0.8)
-                .put("max_tokens_to_sample", 1024);
+                .put("temperature", extractTemperature(body))
+                .put("max_tokens_to_sample", extractMaxTokens(body));
 
         InvokeModelRequest request = InvokeModelRequest.builder()
                 .modelId(modelId)
@@ -43,6 +43,37 @@ public class Claude {
         return new Response(completion);
     }
 
-    public record Request(String prompt) { }
+    private static int extractMaxTokens(Request body) {
+        int maxTokens = 300;
+        
+        if (body.maxTokens != null) {
+            if (body.maxTokens > 2048) {
+                maxTokens = 2048;
+            } else if (body.maxTokens < 85) {
+                maxTokens = 85;
+            } else {
+                maxTokens = body.maxTokens;
+            }
+        }
+        
+        return maxTokens;
+    }
+
+    private static double extractTemperature(Request body) {
+        double temperature = 0.8;
+
+        if (body.temperature != null) {
+            if (body.temperature > 2) {
+                temperature = 2;
+            } else if (body.temperature < 0) {
+                temperature = 0;
+            } else {
+                temperature = body.temperature;
+            }
+        }
+        return temperature;
+    }
+
+    public record Request(String prompt, Double temperature, Integer maxTokens) { }
     public record Response(String completion) { }
 }

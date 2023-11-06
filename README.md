@@ -49,6 +49,7 @@ mvn spring-boot:run
 In a new terminal window, navigate to `java-fm-playground/frontend` and execute:
 
 ```shell
+npm install
 npm run dev
 ```
 

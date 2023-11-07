@@ -89,8 +89,6 @@ export default function TextContainer() {
                 maxTokens: maxTokensValue
             });
 
-            console.log(body)
-
             const response = await fetch(api, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

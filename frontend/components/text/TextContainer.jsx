@@ -14,17 +14,28 @@ export default function TextContainer() {
     };
 
     const handleTemperatureValueChange = (e) => {
-
         let value = e.target.value;
+
         if (isNaN(value)) {
-            value = temperatureValue;
+            value = "";
         } else if (value > 1) {
             value = 1;
-
         }
-        setTemperatureValue(value);
 
-    };
+        setTemperatureValue(value);
+    }
+
+    const handleTemperatureValueBlur = (e) => {
+        let value = e.target.value;
+
+        if (isNaN(value) || value === "") {
+            value = 0.8;
+        } else if (value > 1) {
+            value = 1;
+        }
+
+        setTemperatureValue(value);
+    }
 
     const handleMaxTokensValueChange = (e) => {
         let value = e.target.value;
@@ -38,17 +49,19 @@ export default function TextContainer() {
         setMaxTokensValue(value);
     };
 
-    const handleMaxTokensValueLeave = (e) => {
+    const handleMaxTokensValueBlur = (e) => {
         let value = e.target.value;
 
-        if (isNaN(value)) {
-            value = maxTokensValue;
+        if (isNaN(value) || value === "") {
+            value = 300;
         } else if (value < 85) {
             value = 85;
+        } else if (value > 2048) {
+            value = 2048;
         }
 
         setMaxTokensValue(value);
-    }
+    };
 
     const isNullOrBlankOrEmpty = (str) => {
         return str == null || str.match(/^ *$/) !== null;
@@ -63,18 +76,20 @@ export default function TextContainer() {
     const sendMessage = async () => {
         if (isNullOrBlankOrEmpty(inputValue)) { return; }
 
+        setIsLoading(true);
+
         const endpoint = "/foundation-models/model/text/anthropic.claude-v2/invoke";
         const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
         try {
+
             const body = JSON.stringify({
                 prompt: inputValue,
                 temperature: temperatureValue,
                 maxTokens: maxTokensValue
             });
 
-            setIsLoading(true);
-
+            console.log(body)
 
             const response = await fetch(api, {
                 method: 'POST',
@@ -132,6 +147,7 @@ export default function TextContainer() {
                                 type="text"
                                 value={temperatureValue}
                                 onChange={handleTemperatureValueChange}
+                                onBlur={handleTemperatureValueBlur}
                                 className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                             />
 
@@ -152,7 +168,7 @@ export default function TextContainer() {
                                 type="text"
                                 value={maxTokensValue}
                                 onChange={handleMaxTokensValueChange}
-                                onBlur={handleMaxTokensValueLeave}
+                                onBlur={handleMaxTokensValueBlur}
                                 className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                             />
 

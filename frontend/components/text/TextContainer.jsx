@@ -18,8 +18,8 @@ export default function TextContainer() {
         let value = e.target.value;
         if (isNaN(value)) {
             value = temperatureValue;
-        } else if (value > 2) {
-            value = 2;
+        } else if (value > 1) {
+            value = 1;
 
         }
         setTemperatureValue(value);

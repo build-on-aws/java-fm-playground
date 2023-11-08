@@ -7,7 +7,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
 public class Claude {
-    private static final String MODEL_ID = "anthropic.claude-v2";
+    public static final String MODEL_ID = "anthropic.claude-v2";
 
     public static String invoke(BedrockRuntimeClient client, String prompt, double temperature, int maxTokens) {
         JSONObject jsonBody = new JSONObject()

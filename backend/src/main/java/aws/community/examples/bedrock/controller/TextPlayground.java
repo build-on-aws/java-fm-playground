@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 
+import static aws.community.examples.bedrock.aimodels.LLM.Request;
+import static aws.community.examples.bedrock.aimodels.LLM.Response;
+
 @RestController
 public class TextPlayground {
 
@@ -23,12 +26,12 @@ public class TextPlayground {
     public Response invoke(@PathVariable String modelId, @RequestBody Request request) {
         return switch (modelId) {
 
-            case "anthropic.claude-v2" -> {
+            case Claude.MODEL_ID -> {
                 String completion = Claude.invoke(client, request.prompt(), request.temperature(), request.maxTokens());
                 yield new Response(completion);
             }
 
-            case "ai21.j2-mid-v1" -> {
+            case Jurassic2.MODEL_ID -> {
                 String completion = Jurassic2.invoke(client, request.prompt(), request.temperature(), request.maxTokens());
                 yield new Response(completion);
             }
@@ -36,7 +39,4 @@ public class TextPlayground {
             default -> throw new IllegalArgumentException("Unsupported model ID");
         };
     }
-
-    public record Request(String prompt, Double temperature, Integer maxTokens) { }
-    public record Response(String completion) { }
 }

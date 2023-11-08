@@ -7,7 +7,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
 public class Jurassic2 {
-    private static final String MODEL_ID = "ai21.j2-mid-v1";
+    public static final String MODEL_ID = "ai21.j2-mid-v1";
 
     public static String invoke(BedrockRuntimeClient client, String prompt, double temperature, int maxTokens) {
         JSONObject jsonBody = new JSONObject()
@@ -34,6 +34,4 @@ public class Jurassic2 {
 
         return completion;
     }
-
-
 }

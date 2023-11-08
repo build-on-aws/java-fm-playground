@@ -10,7 +10,7 @@ export default function ImageContainer() {
     const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
 
-    const endpoint = "/foundation-models/model/image/stability.stable-diffusion-xl/invoke";
+    const endpoint = "/foundation-aimodels/model/image/stability.stable-diffusion-xl/invoke";
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     const handleStyleChange = (newStyle) => {

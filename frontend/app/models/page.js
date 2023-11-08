@@ -6,7 +6,7 @@ import GlobalConfig from "@/app/app.config";
 export default function Models() {
     const [data, setData] = useState(null);
 
-    const endpoint = "/foundation-models";
+    const endpoint = "/foundation-aimodels";
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     useEffect(() => {

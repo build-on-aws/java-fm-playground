@@ -19,7 +19,7 @@ public class FoundationModels {
         this.client = client;
     }
 
-    @GetMapping("/foundation-models")
+    @GetMapping("/foundation-aimodels")
     public List<FoundationModelListItem> listFoundationModels() {
 
 
@@ -37,7 +37,7 @@ public class FoundationModels {
 
     public record FoundationModelListItem(String modelId, String modelName, String providerName) { }
 
-    @GetMapping("/foundation-models/model")
+    @GetMapping("/foundation-aimodels/model")
     public getFoundationModel getFoundationModel(@RequestParam(value = "id") String id) {
 
         GetFoundationModelRequest request = GetFoundationModelRequest.builder()

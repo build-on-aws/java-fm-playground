@@ -1,6 +1,6 @@
 package aws.community.examples.bedrock.controller;
 
-import aws.community.examples.bedrock.models.Claude;
+import aws.community.examples.bedrock.aimodels.Claude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +17,8 @@ public class ChatPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-models/model/chat/anthropic.claude-v2/invoke")
-    public Claude.Response invoke(@RequestBody Claude.Request body) {
+    @PostMapping("/foundation-aimodels/model/chat/anthropic.claude-v2/invoke")
+    public TextPlayground.Response invoke(@RequestBody TextPlayground.Request body) {
         String  systemPrompt =
                 """
                 Take the role of a friendly chat bot. Your responses are brief.
@@ -29,6 +29,6 @@ public class ChatPlayground {
 
         String prompt = systemPrompt + "\n\n" + body.prompt();
 
-        return Claude.invoke(client, prompt, 0.8, 1024);
+        return new TextPlayground.Response(Claude.invoke(client, prompt, 0.8, 300));
     }
 }

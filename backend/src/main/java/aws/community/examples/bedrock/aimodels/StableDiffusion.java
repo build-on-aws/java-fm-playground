@@ -1,4 +1,4 @@
-package aws.community.examples.bedrock.models;
+package aws.community.examples.bedrock.aimodels;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,16 +52,15 @@ public class StableDiffusion {
                 .build();
 
         InvokeModelResponse response = client.invokeModel(request);
-        byte[] bytes = new JSONObject(response.body().asUtf8String())
+        String imageBytes = new JSONObject(response.body().asUtf8String())
                 .getJSONArray("artifacts")
                 .getJSONObject(0)
                 .get("base64")
-                .toString()
-                .getBytes();
+                .toString();
 
-        return new Response(bytes);
+        return new Response(imageBytes);
     }
 
     public record Request(String prompt, String stylePreset) { }
-    public record Response(byte[] imageByteArray) { }
+    public record Response(String imageByteArray) { }
 }

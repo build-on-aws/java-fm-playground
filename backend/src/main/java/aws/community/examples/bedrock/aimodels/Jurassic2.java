@@ -1,4 +1,4 @@
-package aws.community.examples.bedrock.models;
+package aws.community.examples.bedrock.aimodels;
 
 import org.json.JSONObject;
 import software.amazon.awssdk.core.SdkBytes;
@@ -6,14 +6,14 @@ import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
-public class Claude {
-    private static final String MODEL_ID = "anthropic.claude-v2";
+public class Jurassic2 {
+    public static final String MODEL_ID = "ai21.j2-mid-v1";
 
-    public static Response invoke(BedrockRuntimeClient client, String prompt, double temperature, int maxTokens) {
+    public static String invoke(BedrockRuntimeClient client, String prompt, double temperature, int maxTokens) {
         JSONObject jsonBody = new JSONObject()
-                .put("prompt", "Human: " + prompt + " Assistant:")
+                .put("prompt", prompt)
                 .put("temperature", temperature)
-                .put("max_tokens_to_sample", maxTokens);
+                .put("maxTokens", maxTokens);
 
         InvokeModelRequest request = InvokeModelRequest.builder()
                 .modelId(MODEL_ID)
@@ -23,11 +23,15 @@ public class Claude {
         InvokeModelResponse response = client.invokeModel(request);
 
         String completion = new JSONObject(response.body().asUtf8String())
-                .getString("completion");
+                .getJSONArray("completions")
+                .getJSONObject(0)
+                .getJSONObject("data")
+                .getString("text");
 
-        return new Response(completion);
+        if (completion.startsWith("\n")) {
+            completion = completion.substring(1);
+        }
+
+        return completion;
     }
-
-    public record Request(String prompt, Double temperature, Integer maxTokens) { }
-    public record Response(String completion) { }
 }

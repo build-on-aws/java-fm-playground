@@ -6,7 +6,7 @@ import GlobalConfig from "@/app/app.config";
 export default function Models() {
     const [data, setData] = useState(null);
 
-    const endpoint = "/foundation-models";
+    const endpoint = "/foundation-aimodels";
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     useEffect(() => {
@@ -27,8 +27,6 @@ export default function Models() {
 
         fetchData();
     }, []);
-
-    console.log(data);
 
     return (
         <div className="container px-6 py-8 mx-auto">

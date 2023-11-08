@@ -3,11 +3,11 @@
 export default function Home() {
   return (
       <div className="container px-6 py-8 mx-auto">
-          <h3 className="text-3xl font-medium text-gray-700">Welcome to the Java FM Playground!</h3>
+          <h3 className="text-3xl font-medium text-gray-700">Welcome to the Python FM Playground!</h3>
           <div className="mt-8">
-              The Java Foundation Model Playground is a sample application showcasing how to leverage Amazon
-              Bedrock from Java code. As any sample application, it is not production-ready. It is provided
-              for the sole purpose of illustrating how Java developers can leverage Amazon Bedrock to build
+              The Python Foundation Model (FM) Playground is a sample application showcasing how to leverage Amazon
+              Bedrock using Python. As any sample application, it is not production-ready. It is provided
+              for the sole purpose of illustrating how Python developers can leverage Amazon Bedrock to build
               generative AI-enabled applications.
           </div>
           <div className="mt-8"></div>

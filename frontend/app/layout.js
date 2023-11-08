@@ -6,8 +6,8 @@ import Content from "@/components/Content";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-    title: 'Java FM Playground',
-    description: 'This sample application shows how to use the Amazon Bedrock SDK for Java.',
+    title: 'Python FM Playground',
+    description: 'This sample application shows how to use the Amazon Bedrock SDK for Python.',
 }
 
 export default function RootLayout({ children }) {

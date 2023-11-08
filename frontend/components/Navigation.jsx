@@ -3,10 +3,10 @@ export default function Navigation() {
 
     return (
         <div className="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
-            <div className="flex items-center justify-center mt-9">
+            <div className="flex items-center justify-center mt-7">
                 <div className="flex items-center">
                     <Link href="/">
-                        <span className="mx-2 text-2xl font-semibold text-white">Java FM Playground</span>
+                        <span className="mx-2 text-xl font-semibold text-white">Python FM Playground</span>
                     </Link>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 package aws.community.examples.bedrock.controller;
 
-import aws.community.examples.bedrock.models.StableDiffusion;
+import aws.community.examples.bedrock.aimodels.StableDiffusion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
@@ -15,7 +15,7 @@ public class ImagePlayground {
         this.client = client;
     }
 
-    @PostMapping ("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
+    @PostMapping ("/foundation-aimodels/model/image/stability.stable-diffusion-xl/invoke")
     public StableDiffusion.Response invoke(@RequestBody StableDiffusion.Request body) {
 
         return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());

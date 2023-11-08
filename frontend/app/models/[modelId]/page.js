@@ -1,13 +1,13 @@
 "use client"
 
 import React, {useEffect, useState} from "react";
-import ModelDetails from "@/components/models/ModelDetails";
+import ModelDetails from "@/components/foundationModels/ModelDetails";
 import GlobalConfig from "@/app/app.config";
 
 export default function Model({params: {modelId}}) {
     const [data, setData] = useState(null);
 
-    const endpoint = `/foundation-models/model?id=${modelId}`;
+    const endpoint = `/foundation-models/model/${modelId}`;
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     useEffect(() => {

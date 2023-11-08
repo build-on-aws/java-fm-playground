@@ -28,8 +28,6 @@ export default function Models() {
         fetchData();
     }, []);
 
-    console.log(data);
-
     return (
         <div className="container px-6 py-8 mx-auto">
             <h3 className="text-3xl font-medium text-gray-700">Foundation Models</h3>

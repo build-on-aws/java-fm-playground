@@ -1,9 +1,9 @@
 "use client";
 
-import Human from "@/components/chat/Human";
+import Human from "@/components/chatPlayground/Human";
 import React, { useState } from "react";
-import Assistant from "@/components/chat/Assistant";
-import Loader from "@/components/chat/Loader";
+import Assistant from "@/components/chatPlayground/Assistant";
+import Loader from "@/components/chatPlayground/Loader";
 import GlobalConfig from "@/app/app.config";
 
 export default function ChatContainer() {
@@ -40,7 +40,7 @@ export default function ChatContainer() {
             const response = await fetch(api, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
+                body: JSON.stringify({ prompt: message })
             });
 
             if (!response.ok) {

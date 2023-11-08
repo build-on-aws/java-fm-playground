@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Spinner from "@/components/Spinner";
-import StyleSelector from "@/components/image/StyleSelector";
+import StyleSelector from "@/components/imagePlayground/StyleSelector";
 import GlobalConfig from "@/app/app.config";
 
 export default function ImageContainer() {
@@ -48,7 +48,7 @@ export default function ImageContainer() {
 
             const body = await response.json();
 
-            setImgSrc(`data:image/png;base64,${atob(body.imageByteArray)}`);
+            setImgSrc(`data:image/png;base64,${body.imageByteArray}`);
         } catch (error) {
             console.error('Error fetching image:', error);
         } finally {

@@ -2,7 +2,7 @@ package aws.community.examples.bedrock.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import software.amazon.awssdk.services.bedrock.BedrockClient;
 import software.amazon.awssdk.services.bedrock.model.*;
@@ -19,9 +19,8 @@ public class FoundationModels {
         this.client = client;
     }
 
-    @GetMapping("/foundation-aimodels")
+    @GetMapping("/foundation-models")
     public List<FoundationModelListItem> listFoundationModels() {
-
 
         ListFoundationModelsRequest request = ListFoundationModelsRequest.builder().build();
         ListFoundationModelsResponse response = client.listFoundationModels(request);
@@ -37,11 +36,11 @@ public class FoundationModels {
 
     public record FoundationModelListItem(String modelId, String modelName, String providerName) { }
 
-    @GetMapping("/foundation-aimodels/model")
-    public getFoundationModel getFoundationModel(@RequestParam(value = "id") String id) {
+    @GetMapping("/foundation-models/model/{modelId}")
+    public getFoundationModel getFoundationModel(@PathVariable String modelId) {
 
         GetFoundationModelRequest request = GetFoundationModelRequest.builder()
-                .modelIdentifier(id)
+                .modelIdentifier(modelId)
                 .build();
         GetFoundationModelResponse response = client.getFoundationModel(request);
 

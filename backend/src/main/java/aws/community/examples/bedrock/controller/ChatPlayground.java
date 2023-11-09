@@ -20,7 +20,7 @@ public class ChatPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-aimodels/model/chat/anthropic.claude-v2/invoke")
+    @PostMapping("/foundation-models/model/chat/anthropic.claude-v2/invoke")
     public Response invoke(@RequestBody Request body) {
         String  systemPrompt =
                 """

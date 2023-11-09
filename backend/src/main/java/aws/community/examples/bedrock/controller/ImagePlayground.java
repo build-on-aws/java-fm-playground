@@ -15,7 +15,7 @@ public class ImagePlayground {
         this.client = client;
     }
 
-    @PostMapping ("/foundation-aimodels/model/image/stability.stable-diffusion-xl/invoke")
+    @PostMapping ("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
     public StableDiffusion.Response invoke(@RequestBody StableDiffusion.Request body) {
 
         return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());

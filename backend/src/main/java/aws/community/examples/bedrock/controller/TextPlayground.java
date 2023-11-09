@@ -22,7 +22,7 @@ public class TextPlayground {
         this.client = client;
     }
 
-    @PostMapping("/foundation-aimodels/model/text/{modelId}/invoke")
+    @PostMapping("/foundation-models/model/text/{modelId}/invoke")
     public Response invoke(@PathVariable String modelId, @RequestBody Request request) {
         return switch (modelId) {
 
